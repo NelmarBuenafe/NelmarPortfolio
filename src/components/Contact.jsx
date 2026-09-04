@@ -13,8 +13,8 @@ const contactLinks = [
   {
     icon: FaGithub,
     label: "GitHub",
-    value: "github.com/yourusername",
-    href: "https://github.com/",
+    value: "github.com/NelmarBuenafe",
+    href: "https://github.com/NelmarBuenafe",
   },
   {
     icon: FaLinkedin,
