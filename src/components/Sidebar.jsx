@@ -79,7 +79,7 @@ function Sidebar({ collapsed, onToggle }) {
       />
 
       <aside
-        className={`fixed inset-y-0 left-0 z-50 box-border w-[min(86vw,21rem)] transform overflow-y-auto border-r border-teal-900/70 bg-[#10201f] p-4 text-white shadow-2xl shadow-black/30 transition-transform duration-300 ease-out md:translate-x-0 ${collapsed ? "md:w-20 md:p-3" : "md:w-72 md:p-6"} ${
+        className={`fixed inset-y-0 left-0 z-50 box-border w-[min(86vw,21rem)] transform overflow-hidden border-r border-teal-900/70 bg-[#10201f] p-4 text-white shadow-2xl shadow-black/30 transition-transform duration-300 ease-out md:translate-x-0 ${collapsed ? "md:w-20 md:p-3" : "md:w-72 md:p-6"} ${
           open ? "translate-x-0" : "-translate-x-full"
         }`}
       >
@@ -109,13 +109,13 @@ function Sidebar({ collapsed, onToggle }) {
             <button
               type="button"
               onClick={() => setShowPhoto((value) => !value)}
-              className={`group relative mx-auto mb-4 block overflow-hidden rounded-full border-4 border-teal-700/70 bg-gradient-to-br from-teal-400 to-teal-800 shadow-lg shadow-teal-950/30 ${collapsed ? "h-12 w-12" : "h-24 w-24 md:h-28 md:w-28"}`}
+              className={`group relative mx-auto mb-4 block overflow-hidden rounded-full border-4 border-teal-700/70 bg-gradient-to-br from-teal-400 to-teal-800 shadow-lg shadow-teal-950/30 ${collapsed ? "h-12 w-12" : "h-28 w-28"}`}
               title="Hover or click to see my photo"
               aria-label="Toggle profile photo"
               aria-pressed={showPhoto}
             >
               <div className={`flex h-full w-full items-center justify-center text-[#10201f] transition-opacity duration-200 ${showPhoto ? "opacity-0" : "group-hover:opacity-0"}`}>
-                <UserRound size={collapsed ? 24 : 46} strokeWidth={1.5} />
+                <UserRound size={collapsed ? 24 : 50} strokeWidth={1.5} />
               </div>
               <img
                 src={ProfileImage}
@@ -152,7 +152,7 @@ function Sidebar({ collapsed, onToggle }) {
             ))}
           </nav>
 
-          <div className={`mt-8 space-y-3 md:mt-auto ${collapsed ? "md:hidden" : ""}`}>
+          <div className={`mt-6 space-y-3 md:mt-auto ${collapsed ? "md:hidden" : ""}`}>
             <div className="rounded-2xl border border-teal-900/80 bg-[#172d2b] p-4">
               <p className="text-xs font-semibold uppercase tracking-wider text-stone-500">Available for</p>
               <p className="mt-2 text-sm leading-6 text-stone-200">UI/UX internships, design projects, and learning opportunities</p>
