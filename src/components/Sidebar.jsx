@@ -77,7 +77,7 @@ function Sidebar({ collapsed, onToggle }) {
       />
 
       <aside
-        className={`fixed inset-y-0 left-0 z-50 w-[min(86vw,21rem)] transform border-r border-teal-900/70 bg-[#10201f] p-4 text-white shadow-2xl shadow-black/30 transition-transform duration-300 ease-out md:translate-x-0 ${collapsed ? "md:w-20 md:p-3" : "md:w-72 md:p-6"} ${
+        className={`fixed inset-y-0 left-0 z-50 box-border w-[min(86vw,21rem)] transform overflow-y-auto border-r border-teal-900/70 bg-[#10201f] p-4 text-white shadow-2xl shadow-black/30 transition-transform duration-300 ease-out md:translate-x-0 ${collapsed ? "md:w-20 md:p-3" : "md:w-72 md:p-6"} ${
           open ? "translate-x-0" : "-translate-x-full"
         }`}
       >
@@ -93,7 +93,7 @@ function Sidebar({ collapsed, onToggle }) {
           </button>
         </div>
 
-        <div className="flex h-full flex-col">
+        <div className="flex min-h-full flex-col pb-2">
           <div className={`relative mb-7 text-center ${collapsed ? "pt-12" : ""}`}>
             <button
               type="button"
@@ -150,7 +150,7 @@ function Sidebar({ collapsed, onToggle }) {
             ))}
           </nav>
 
-          <div className={`mt-auto space-y-3 ${collapsed ? "md:hidden" : ""}`}>
+          <div className={`mt-8 space-y-3 md:mt-auto ${collapsed ? "md:hidden" : ""}`}>
             <div className="rounded-2xl border border-teal-900/80 bg-[#172d2b] p-4">
               <p className="text-xs font-semibold uppercase tracking-wider text-stone-500">Available for</p>
               <p className="mt-2 text-sm leading-6 text-stone-200">UI/UX internships, design projects, and learning opportunities</p>
