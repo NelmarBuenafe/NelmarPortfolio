@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import {
   House,
@@ -30,18 +30,37 @@ function Sidebar({ collapsed, onToggle }) {
   const [open, setOpen] = useState(false);
   const [showPhoto, setShowPhoto] = useState(false);
 
+  useEffect(() => {
+    const closeOnEscape = (event) => {
+      if (event.key === "Escape") setOpen(false);
+    };
+
+    document.addEventListener("keydown", closeOnEscape);
+    document.body.style.overflow = open ? "hidden" : "";
+
+    return () => {
+      document.removeEventListener("keydown", closeOnEscape);
+      document.body.style.overflow = "";
+    };
+  }, [open]);
+
   return (
     <>
-      <header className="fixed left-0 right-0 top-0 z-50 flex h-16 items-center justify-between border-b border-stone-200 bg-white/95 px-5 shadow-sm backdrop-blur md:hidden">
-        <div>
-          <p className="text-sm font-bold text-stone-900">Nelmar Buenafe</p>
-          <p className="text-xs text-stone-500">UI/UX Design Student</p>
+      <header className="fixed left-0 right-0 top-0 z-50 flex h-[4.5rem] items-center justify-between border-b border-stone-200/80 bg-white/95 px-4 shadow-sm shadow-stone-900/5 backdrop-blur md:hidden">
+        <div className="flex items-center gap-3">
+          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-teal-700 text-white shadow-sm shadow-teal-900/20">
+            <UserRound size={18} strokeWidth={1.8} />
+          </div>
+          <div>
+            <p className="text-sm font-bold leading-tight text-stone-900">Nelmar Buenafe</p>
+            <p className="mt-0.5 text-[11px] font-medium text-stone-500">UI/UX Design Student</p>
+          </div>
         </div>
 
         <button
           type="button"
           onClick={() => setOpen((value) => !value)}
-          className="rounded-lg p-2 text-stone-700 transition hover:bg-stone-100"
+          className="flex h-10 w-10 items-center justify-center rounded-xl border border-stone-200 bg-white text-stone-700 shadow-sm transition hover:border-teal-300 hover:bg-teal-50 hover:text-teal-800"
           aria-label={open ? "Close navigation" : "Open navigation"}
           aria-expanded={open}
         >
@@ -49,26 +68,37 @@ function Sidebar({ collapsed, onToggle }) {
         </button>
       </header>
 
-      {open && (
-        <button
-          type="button"
-          onClick={() => setOpen(false)}
-          className="fixed inset-0 z-40 bg-black/30 md:hidden"
-          aria-label="Close navigation"
-        />
-      )}
+      <div
+        onClick={() => setOpen(false)}
+        className={`fixed inset-0 z-40 bg-stone-950/45 backdrop-blur-[2px] transition-opacity duration-300 md:hidden ${
+          open ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"
+        }`}
+        aria-hidden="true"
+      />
 
       <aside
-        className={`fixed inset-y-0 left-0 z-50 transform bg-[#10201f] text-white shadow-2xl transition-all duration-300 md:translate-x-0 ${collapsed ? "md:w-20 md:p-3" : "md:w-72 md:p-6"} ${
+        className={`fixed inset-y-0 left-0 z-50 w-[min(86vw,21rem)] transform border-r border-teal-900/70 bg-[#10201f] p-4 text-white shadow-2xl shadow-black/30 transition-transform duration-300 ease-out md:translate-x-0 ${collapsed ? "md:w-20 md:p-3" : "md:w-72 md:p-6"} ${
           open ? "translate-x-0" : "-translate-x-full"
         }`}
       >
+        <div className="mb-5 flex items-center justify-between md:hidden">
+          <span className="text-xs font-semibold uppercase tracking-[0.18em] text-teal-300">Menu</span>
+          <button
+            type="button"
+            onClick={() => setOpen(false)}
+            className="flex h-9 w-9 items-center justify-center rounded-lg text-stone-300 transition hover:bg-white/10 hover:text-white"
+            aria-label="Close navigation"
+          >
+            <X size={20} />
+          </button>
+        </div>
+
         <div className="flex h-full flex-col">
           <div className={`relative mb-7 text-center ${collapsed ? "pt-12" : ""}`}>
             <button
               type="button"
               onClick={onToggle}
-              className={`absolute top-0 p-2 text-stone-400 transition hover:text-teal-300 ${collapsed ? "left-1/2 -translate-x-1/2" : "right-0"}`}
+              className={`absolute right-0 top-0 hidden p-2 text-stone-400 transition hover:text-teal-300 md:block ${collapsed ? "left-1/2 -translate-x-1/2" : ""}`}
               aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
               title={collapsed ? "Expand sidebar" : "Collapse sidebar"}
             >
@@ -77,13 +107,13 @@ function Sidebar({ collapsed, onToggle }) {
             <button
               type="button"
               onClick={() => setShowPhoto((value) => !value)}
-              className={`group relative mx-auto mb-4 block overflow-hidden rounded-full border-4 border-teal-700/70 bg-gradient-to-br from-teal-400 to-teal-800 shadow-lg shadow-teal-950/30 ${collapsed ? "h-12 w-12" : "h-28 w-28"}`}
+              className={`group relative mx-auto mb-4 block overflow-hidden rounded-full border-4 border-teal-700/70 bg-gradient-to-br from-teal-400 to-teal-800 shadow-lg shadow-teal-950/30 ${collapsed ? "h-12 w-12" : "h-24 w-24 md:h-28 md:w-28"}`}
               title="Hover or click to see my photo"
               aria-label="Toggle profile photo"
               aria-pressed={showPhoto}
             >
               <div className={`flex h-full w-full items-center justify-center text-[#10201f] transition-opacity duration-200 ${showPhoto ? "opacity-0" : "group-hover:opacity-0"}`}>
-                <UserRound size={collapsed ? 24 : 52} strokeWidth={1.5} />
+                <UserRound size={collapsed ? 24 : 46} strokeWidth={1.5} />
               </div>
               <img
                 src={ProfileImage}
@@ -131,9 +161,9 @@ function Sidebar({ collapsed, onToggle }) {
               Download Resume
             </a>
           </div>
-
         </div>
       </aside>
+
     </>
   );
 }
