@@ -60,7 +60,9 @@ function Sidebar({ collapsed, onToggle }) {
         <button
           type="button"
           onClick={() => setOpen((value) => !value)}
-          className="flex h-10 w-10 items-center justify-center rounded-xl border border-stone-200 bg-white text-stone-700 shadow-sm transition hover:border-teal-300 hover:bg-teal-50 hover:text-teal-800"
+          className={`flex h-10 w-10 items-center justify-center rounded-xl border border-stone-200 bg-white text-stone-700 shadow-sm transition hover:border-teal-300 hover:bg-teal-50 hover:text-teal-800 ${
+            open ? "pointer-events-none invisible" : ""
+          }`}
           aria-label={open ? "Close navigation" : "Open navigation"}
           aria-expanded={open}
         >
