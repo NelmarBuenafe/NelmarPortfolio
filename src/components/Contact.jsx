@@ -7,8 +7,8 @@ const contactLinks = [
   {
     icon: Mail,
     label: "Email",
-    value: "your.email@example.com",
-    href: "mailto:your.email@example.com",
+    value: "buenafenelmar7@gmail.com",
+    href: "mailto:buenafenelmar7@gmail.com",
   },
   {
     icon: FaGithub,
