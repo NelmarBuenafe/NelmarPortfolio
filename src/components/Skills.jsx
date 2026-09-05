@@ -12,7 +12,7 @@ const skillGroups = [
   {
     icon: Code2,
     title: "Design Foundations",
-    skills: ["UI/UX Design", "Wireframing", "Visual Hierarchy", "Figma"],
+    skills: ["UI/UX Design", "Wireframing", "Visual Hierarchy", "Canva"],
   },
   {
     icon: Globe,
@@ -27,7 +27,7 @@ const skillGroups = [
   {
     icon: Database,
     title: "Learning Tools",
-    skills: ["Figma", "FigJam", "VS Code", "Git"],
+    skills: ["Canva", "VS Code", "Git"],
   },
   {
     icon: Shield,

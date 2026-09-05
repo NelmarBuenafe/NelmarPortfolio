@@ -50,7 +50,7 @@ function About() {
           <InfoCard
             icon={Code2}
             title="Development"
-            text="UI/UX Design, Figma, HTML, CSS"
+            text="UI/UX Design, Canva, HTML, CSS"
           />
           <InfoCard
             icon={ShieldCheck}

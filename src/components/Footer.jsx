@@ -13,7 +13,7 @@ const socials = [
   },
   {
     label: "Facebook",
-    href: "https://www.facebook.com/",
+    href: "https://www.facebook.com/nelmar.buenafe",
     icon: FaFacebook,
   },
 ];

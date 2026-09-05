@@ -160,17 +160,19 @@ function Home() {
             </p>
 
             <h2 className="mt-4 text-3xl font-bold sm:text-4xl">
-              SmartBreed
+              BreedSmart
             </h2>
 
             <p className="mt-4 max-w-2xl leading-7 text-stone-300">
-              A livestock artificial insemination management application
-              designed to help farmers and vendors organize breeding
-              information and support more efficient livestock management.
+              A multi-platform livestock and breeding management system for
+              the Iloilo Agriculture's Office. BreedSmart connects an
+              offline-capable mobile app for farmers and field technicians
+              with a web dashboard for breeding records, animal health,
+              scheduling, reports, and analytics.
             </p>
 
             <div className="mt-6 flex flex-wrap gap-2">
-              {["React", "PHP", "MySQL", "JavaScript"].map((item) => (
+              {["React", "React Native", "Expo", "JavaScript", "TypeScript", "Node.js", "Express", "MongoDB", "Tailwind CSS", "Vite"].map((item) => (
                 <span
                   key={item}
                   className="rounded-full border border-stone-700 px-3 py-1.5 text-xs font-medium text-stone-300"
@@ -180,13 +182,15 @@ function Home() {
               ))}
             </div>
 
-            <Link
-              to="/projects"
+            <a
+              href="https://www.breedsmartoton.site/"
+              target="_blank"
+              rel="noopener noreferrer"
               className="mt-8 inline-flex items-center gap-2 rounded-xl bg-white px-5 py-3 text-sm font-semibold text-stone-900 transition hover:bg-stone-200"
             >
-              View Project Details
+              Open BreedSmart System
               <ExternalLink size={17} />
-            </Link>
+            </a>
           </div>
 
           <div className="hidden rounded-2xl border border-stone-700 p-6 lg:block">

@@ -79,7 +79,7 @@ function Contact() {
 
           <p className="mt-8 text-xs font-semibold uppercase tracking-[0.18em] text-stone-500">Currently exploring</p>
           <div className="mt-3 flex flex-wrap gap-2">
-            {["UI/UX Design", "Figma", "Problem Solving"].map((item) => (
+            {["UI/UX Design", "Canva", "Problem Solving"].map((item) => (
               <span key={item} className="rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs text-stone-300">{item}</span>
             ))}
           </div>
