@@ -4,6 +4,7 @@ import SectionHeader from "./SectionHeader";
 import CiscoCert from "../assets/CiscoCert.png";
 import BasicJSCert from "../assets/BasicJSCert.jpg";
 import WebDesignCert from "../assets/WebDesignCert.jpg";
+import NelmarCert from "../assets/NelmarCert.jpg";
 
 const achievements = [
   {
@@ -26,42 +27,18 @@ const achievements = [
   {
     icon: Award,
     year: "2026",
-    title: "Web Design",
+    title: "CITE Week UI/UX Competition Champion",
     description:
-      "Completed a web design certificate and strengthened my foundation in creating clear, engaging, and user-focused digital interfaces.",
+      "Earned this web design certificate during CITE Week and contributed to our team’s championship win in the UI/UX competition.",
     image: WebDesignCert,
   },
   {
     icon: Trophy,
     year: "2026",
-    title: "Academic Project Development",
+    title: "Well-Performing Student",
     description:
-      "Developed academic software projects involving web development, databases, REST APIs, system design, and user interfaces.",
-    image: null,
-  },
-  {
-    icon: Award,
-    year: "2025",
-    title: "Capstone Project",
-    description:
-      "Participated in the development of SmartBreed, a livestock artificial insemination management application.",
-    image: null,
-  },
-  {
-    icon: Star,
-    year: "2025",
-    title: "Programming Projects",
-    description:
-      "Built applications and exercises using Java, Python, JavaScript, React, PHP, Flask, and MySQL.",
-    image: null,
-  },
-  {
-    icon: Medal,
-    year: "Ongoing",
-    title: "Continuous Learning",
-    description:
-      "Continuing to strengthen skills in web development, cybersecurity, networking, databases, and software development.",
-    image: null,
+      "Recognized for commendable academic performance, dedication, perseverance, and commitment to learning during the first semester of Academic Year 2026–2027.",
+    image: NelmarCert,
   },
 ];
 

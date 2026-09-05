@@ -7,7 +7,7 @@ const education = [
     degree: "Bachelor of Science in Information Technology",
     school: "PHINMA University of Iloilo",
     description:
-      "Studying programming, web development, databases, networking, cybersecurity, software development, and information technology concepts.",
+      "Studying programming, web development, databases, networking, software development, and information technology concepts.",
   },
   {
     year: "Completed",
