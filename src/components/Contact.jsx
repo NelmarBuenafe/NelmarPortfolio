@@ -33,14 +33,10 @@ function Contact() {
     event.preventDefault();
 
     const form = new FormData(event.currentTarget);
-    const name = form.get("name");
-    const email = form.get("email");
     const message = form.get("message");
 
-    const subject = encodeURIComponent(`Portfolio inquiry from ${name}`);
-    const body = encodeURIComponent(
-      `Name: ${name}\nReply-to email: ${email}\n\n${message}`,
-    );
+    const subject = encodeURIComponent("Nelmar Buenafe");
+    const body = encodeURIComponent(message);
 
     setSent(true);
     window.location.href = `mailto:${contactEmail}?subject=${subject}&body=${body}`;
@@ -112,21 +108,10 @@ function Contact() {
           >
             <h3 className="text-lg font-bold">Send a message</h3>
             <p className="mt-1 text-sm text-stone-500">
-              Your message will be addressed to {contactEmail}. Your email
-              will be included so Nelmar can reply to you.
+              Your message will be addressed to {contactEmail}.
             </p>
 
-            <div className="mt-5 grid gap-4 sm:grid-cols-2">
-              <Field label="Name" name="name" placeholder="Your name" />
-              <Field
-                label="Email"
-                name="email"
-                type="email"
-                placeholder="you@example.com"
-              />
-            </div>
-
-            <label className="mt-4 block">
+            <label className="mt-5 block">
               <span className="text-sm font-semibold text-stone-700">
                 Message
               </span>
@@ -150,21 +135,6 @@ function Contact() {
         </div>
       </div>
     </section>
-  );
-}
-
-function Field({ label, name, type = "text", placeholder }) {
-  return (
-    <label className="block">
-      <span className="text-sm font-semibold text-stone-700">{label}</span>
-      <input
-        name={name}
-        type={type}
-        required
-        placeholder={placeholder}
-        className="mt-2 w-full rounded-xl border border-stone-200 bg-stone-50 px-4 py-3 text-sm outline-none transition placeholder:text-stone-400 focus:border-stone-500 focus:bg-white"
-      />
-    </label>
   );
 }
 
