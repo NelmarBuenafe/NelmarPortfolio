@@ -3,12 +3,14 @@ import { Mail, ArrowUpRight, Send, CircleCheck, Clock, MapPin } from "lucide-rea
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import SectionHeader from "./SectionHeader";
 
+const contactEmail = "buenafenelmar7@gmail.com";
+
 const contactLinks = [
   {
     icon: Mail,
     label: "Email",
-    value: "buenafenelmar7@gmail.com",
-    href: "mailto:buenafenelmar7@gmail.com",
+    value: contactEmail,
+    href: `mailto:${contactEmail}`,
   },
   {
     icon: FaGithub,
@@ -37,11 +39,11 @@ function Contact() {
 
     const subject = encodeURIComponent(`Portfolio inquiry from ${name}`);
     const body = encodeURIComponent(
-      `Name: ${name}\nEmail: ${email}\n\n${message}`,
+      `Name: ${name}\nReply-to email: ${email}\n\n${message}`,
     );
 
     setSent(true);
-    window.location.href = `mailto:your.email@example.com?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:${contactEmail}?subject=${subject}&body=${body}`;
   }
 
   return (
@@ -85,7 +87,7 @@ function Contact() {
           </div>
 
           <a
-            href="mailto:your.email@example.com"
+            href={`mailto:${contactEmail}`}
             className="mt-8 inline-flex items-center gap-2 rounded-xl bg-white px-5 py-3 text-sm font-semibold text-stone-900 transition hover:bg-stone-200"
           >
             Send me an email
@@ -110,7 +112,8 @@ function Contact() {
           >
             <h3 className="text-lg font-bold">Send a message</h3>
             <p className="mt-1 text-sm text-stone-500">
-              This form opens your default email application.
+              Your message will be addressed to {contactEmail}. Your email
+              will be included so Nelmar can reply to you.
             </p>
 
             <div className="mt-5 grid gap-4 sm:grid-cols-2">
