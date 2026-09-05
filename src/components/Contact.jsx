@@ -35,11 +35,10 @@ function Contact() {
     const form = new FormData(event.currentTarget);
     const message = form.get("message");
 
-    const subject = encodeURIComponent("Nelmar Buenafe");
     const body = encodeURIComponent(message);
 
     setSent(true);
-    window.location.href = `mailto:${contactEmail}?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:${contactEmail}?body=${body}`;
   }
 
   return (
