@@ -3,6 +3,7 @@ import { Trophy, Award, Star, Medal, ExternalLink, X } from "lucide-react";
 import SectionHeader from "./SectionHeader";
 import CiscoCert from "../assets/CiscoCert.png";
 import BasicJSCert from "../assets/BasicJSCert.jpg";
+import WebDesignCert from "../assets/WebDesignCert.jpg";
 
 const achievements = [
   {
@@ -21,6 +22,14 @@ const achievements = [
     description:
       "Completed a foundational JavaScript certificate and strengthened my understanding of core programming concepts for web development.",
     image: BasicJSCert,
+  },
+  {
+    icon: Award,
+    year: "2026",
+    title: "Web Design",
+    description:
+      "Completed a web design certificate and strengthened my foundation in creating clear, engaging, and user-focused digital interfaces.",
+    image: WebDesignCert,
   },
   {
     icon: Trophy,
