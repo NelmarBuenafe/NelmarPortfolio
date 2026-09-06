@@ -1,5 +1,6 @@
 import { MapPin, Code2, ShieldCheck, Laptop, Heart } from "lucide-react";
 import SectionHeader from "./SectionHeader";
+import GitHubContributions from "./GitHubContributions";
 
 function About() {
   return (
@@ -69,6 +70,8 @@ function About() {
           />
         </div>
       </div>
+
+      <GitHubContributions />
     </section>
   );
 }
