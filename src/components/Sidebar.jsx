@@ -15,7 +15,7 @@ import {
   PanelLeftClose,
   PanelLeftOpen,
 } from "lucide-react";
-import ProfileImage from "../assets/formal.jpg";
+import ProfileImage from "../assets/formal2.png";
 
 const menu = [
   { path: "/", label: "Home", icon: House, end: true },
