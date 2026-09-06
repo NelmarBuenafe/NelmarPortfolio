@@ -145,7 +145,6 @@ function Home() {
                     <span className="ml-1 inline-block h-[0.8em] w-0.5 translate-y-1 bg-teal-500 motion-safe:animate-pulse" />
                   </span>
                 </span>
-                <span className="text-teal-700">.</span>
               </h1>
             </Reveal>
 
@@ -196,7 +195,7 @@ function Home() {
           </div>
 
           <Reveal className="mx-auto w-full max-w-md lg:max-w-none" delay="delay-150">
-            <div className="relative px-3 pb-8 sm:px-5">
+            <div className="relative px-3 pb-8 pt-14 sm:px-5">
               <div className="absolute -right-1 top-1 h-24 w-24 rounded-3xl border border-teal-200 sm:-right-2" aria-hidden="true" />
               <div className="absolute -bottom-1 left-0 h-24 w-24 rounded-3xl border border-stone-300" aria-hidden="true" />
 
@@ -217,7 +216,7 @@ function Home() {
                 value="UI/UX Design"
               />
               <InfoCard
-                className="right-0 top-10 hidden sm:block"
+                className="right-0 top-0 hidden sm:block"
                 icon={FolderKanban}
                 label="Currently building"
                 value="Digital experiences"
