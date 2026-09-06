@@ -194,7 +194,7 @@ function Home() {
             </Reveal>
           </div>
 
-          <Reveal className="mx-auto w-full max-w-md lg:max-w-none" delay="delay-150">
+          <Reveal className="mx-auto w-full max-w-md" delay="delay-150">
             <div className="relative px-3 pb-8 pt-14 sm:px-5">
               <div className="absolute -right-1 top-1 h-24 w-24 rounded-3xl border border-teal-200 sm:-right-2" aria-hidden="true" />
               <div className="absolute -bottom-1 left-0 h-24 w-24 rounded-3xl border border-stone-300" aria-hidden="true" />
