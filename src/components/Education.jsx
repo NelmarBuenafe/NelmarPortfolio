@@ -18,14 +18,16 @@ const education = [
   },
 ];
 
-function Education() {
+function Education({ embedded = false }) {
   return (
     <section>
-      <SectionHeader
-        label="Academic Background"
-        title="Education"
-        description="My academic path and the foundation behind my technical development."
-      />
+      {!embedded && (
+        <SectionHeader
+          label="Academic Background"
+          title="Education"
+          description="My academic path and the foundation behind my technical development."
+        />
+      )}
 
       <div className="space-y-5">
         {education.map((item) => (

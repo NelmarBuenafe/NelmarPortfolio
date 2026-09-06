@@ -6,8 +6,7 @@ import {
   BriefcaseBusiness,
   Code2,
   FolderGit2,
-  Trophy,
-  GraduationCap,
+  Sparkles,
   Mail,
   Menu,
   X,
@@ -23,8 +22,7 @@ const menu = [
   { path: "/experience", label: "Experience", icon: BriefcaseBusiness },
   { path: "/skills", label: "Skills", icon: Code2 },
   { path: "/projects", label: "Projects", icon: FolderGit2 },
-  { path: "/achievements", label: "Achievements", icon: Trophy },
-  { path: "/education", label: "Education", icon: GraduationCap },
+  { path: "/services", label: "Services", icon: Sparkles },
   { path: "/contact", label: "Contact", icon: Mail },
 ];
 

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Trophy, Award, Star, Medal, ExternalLink, X } from "lucide-react";
+import { Trophy, Award, ExternalLink, X } from "lucide-react";
 import SectionHeader from "./SectionHeader";
 import CiscoCert from "../assets/CiscoCert.png";
 import BasicJSCert from "../assets/BasicJSCert.jpg";
@@ -42,7 +42,7 @@ const achievements = [
   },
 ];
 
-function Achievements() {
+function Achievements({ embedded = false }) {
   const [selectedCertificate, setSelectedCertificate] = useState(null);
 
   useEffect(() => {
@@ -56,11 +56,13 @@ function Achievements() {
 
   return (
     <section>
-      <SectionHeader
-        label="Milestones"
-        title="Achievements"
-        description="Selected academic milestones and areas of continuous growth."
-      />
+      {!embedded && (
+        <SectionHeader
+          label="Milestones"
+          title="Achievements"
+          description="Selected academic milestones and areas of continuous growth."
+        />
+      )}
 
       <div className="grid gap-5 md:grid-cols-2">
         {achievements.map(({ icon: Icon, year, title, description, image, certificate }) => (

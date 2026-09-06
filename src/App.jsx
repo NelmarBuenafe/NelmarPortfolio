@@ -26,11 +26,28 @@ function App() {
 }
 
 function ScrollToTop() {
-  const { pathname } = useLocation();
+  const { pathname, hash } = useLocation();
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
+    let frameId;
+
+    if (hash) {
+      frameId = window.requestAnimationFrame(() => {
+        document.getElementById(hash.slice(1))?.scrollIntoView({
+          behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
+            ? "auto"
+            : "smooth",
+          block: "start",
+        });
+      });
+    } else {
+      window.scrollTo(0, 0);
+    }
+
+    return () => {
+      if (frameId) window.cancelAnimationFrame(frameId);
+    };
+  }, [pathname, hash]);
 
   return null;
 }
