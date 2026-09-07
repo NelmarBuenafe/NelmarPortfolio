@@ -63,9 +63,10 @@ function Sidebar({ collapsed, onToggle }) {
           <button
             type="button"
             onClick={() => setOpen((value) => !value)}
-            className="flex h-10 w-10 items-center justify-center rounded-xl border border-stone-200 bg-white text-stone-700 shadow-sm transition hover:border-teal-300 hover:bg-teal-50 hover:text-teal-800"
+            className="flex h-10 w-10 items-center justify-center rounded-xl border border-stone-200 bg-white text-stone-700 shadow-sm transition hover:border-teal-300 hover:bg-teal-50 hover:text-teal-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 focus-visible:ring-offset-2"
             aria-label={open ? "Close navigation" : "Open navigation"}
             aria-expanded={open}
+            title={open ? "Close navigation" : "Open navigation"}
           >
             {open ? <X size={22} /> : <Menu size={22} />}
           </button>
@@ -90,27 +91,29 @@ function Sidebar({ collapsed, onToggle }) {
           <button
             type="button"
             onClick={() => setOpen(false)}
-            className="flex h-9 w-9 items-center justify-center rounded-lg text-stone-300 transition hover:bg-white/10 hover:text-white"
+            className="flex h-9 w-9 items-center justify-center rounded-lg text-stone-300 transition hover:bg-white/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#10201f]"
             aria-label="Close navigation"
+            title="Close navigation"
           >
             <X size={20} />
           </button>
         </div>
 
         <div className="flex min-h-full flex-col pb-2">
-          <div className={`relative mb-7 text-center ${collapsed ? "pt-12" : ""}`}>
-            <div className={`absolute right-0 top-0 hidden items-center gap-1 md:flex ${collapsed ? "left-1/2 -translate-x-1/2" : ""}`}>
-              <AppearanceMenu compact={collapsed} />
-              <button
-                type="button"
-                onClick={onToggle}
-                className="flex h-10 w-10 items-center justify-center rounded-xl p-2 text-stone-400 transition hover:bg-white/10 hover:text-teal-300"
-                aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
-                title={collapsed ? "Expand sidebar" : "Collapse sidebar"}
-              >
-                {collapsed ? <PanelLeftOpen size={18} /> : <PanelLeftClose size={18} />}
-              </button>
-            </div>
+          <div className={`mb-4 flex hidden md:flex ${collapsed ? "flex-col items-center gap-2" : "justify-end gap-2"}`}>
+            <button
+              type="button"
+              onClick={onToggle}
+              className="flex h-10 w-10 items-center justify-center rounded-xl p-2 text-stone-400 transition hover:bg-white/10 hover:text-teal-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#10201f]"
+              aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
+              title={collapsed ? "Expand sidebar" : "Collapse sidebar"}
+            >
+              {collapsed ? <PanelLeftOpen size={18} /> : <PanelLeftClose size={18} />}
+            </button>
+            <AppearanceMenu compact={collapsed} />
+          </div>
+
+          <div className="mb-7 text-center">
             <button
               type="button"
               onClick={() => setShowPhoto((value) => !value)}
