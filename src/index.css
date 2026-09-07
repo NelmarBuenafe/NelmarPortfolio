@@ -1,5 +1,33 @@
 @import "tailwindcss";
 
+:root {
+  --color-background: #f7f9f8;
+  --color-surface: #ffffff;
+  --color-surface-muted: #f5f5f4;
+  --color-text: #17211f;
+  --color-text-muted: #57534e;
+  --color-border: #e7e5e4;
+  --color-accent: #0f766e;
+  --color-accent-hover: #115e59;
+  --color-accent-soft: #ccfbf1;
+  --color-accent-contrast: #ffffff;
+  --color-focus: #0f766e;
+}
+
+[data-accent="blue"] { --color-accent: #2563eb; --color-accent-hover: #1d4ed8; --color-accent-soft: #dbeafe; --color-focus: #2563eb; }
+[data-accent="violet"] { --color-accent: #7c3aed; --color-accent-hover: #6d28d9; --color-accent-soft: #ede9fe; --color-focus: #7c3aed; }
+[data-accent="amber"] { --color-accent: #b45309; --color-accent-hover: #92400e; --color-accent-soft: #fef3c7; --color-focus: #b45309; }
+
+[data-theme="dark"] {
+  --color-background: #101918;
+  --color-surface: #192624;
+  --color-surface-muted: #223330;
+  --color-text: #eef5f2;
+  --color-text-muted: #b7c5c0;
+  --color-border: #38504b;
+  --color-accent-soft: color-mix(in srgb, var(--color-accent) 20%, #192624);
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -7,8 +35,8 @@ html {
 body {
   margin: 0;
   min-width: 320px;
-  background: #f7f9f8;
-  color: #17211f;
+  background: var(--color-background);
+  color: var(--color-text);
   font-family:
     Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
     "Segoe UI", sans-serif;
@@ -35,6 +63,71 @@ textarea {
 ::selection {
   background: #0f766e;
   color: white;
+}
+
+html,
+body,
+#root,
+.app-shell {
+  background-color: var(--color-background);
+  color: var(--color-text);
+}
+
+body,
+button,
+a,
+input,
+textarea,
+select {
+  transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease;
+}
+
+main {
+  background-image: linear-gradient(color-mix(in srgb, var(--color-accent) 7%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--color-accent) 7%, transparent) 1px, transparent 1px);
+}
+
+[data-theme="dark"] main {
+  background-image: linear-gradient(color-mix(in srgb, var(--color-accent) 4%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--color-accent) 4%, transparent) 1px, transparent 1px);
+}
+
+/* Keep the existing Tailwind composition while making its semantic surfaces theme-aware. */
+[data-theme="dark"] .bg-white,
+[data-theme="dark"] .bg-white\/70,
+[data-theme="dark"] .bg-white\/95 { background-color: var(--color-surface) !important; }
+[data-theme="dark"] .bg-stone-50,
+[data-theme="dark"] .bg-stone-100,
+[data-theme="dark"] .bg-stone-50\/70 { background-color: var(--color-surface-muted) !important; }
+[data-theme="dark"] .text-stone-950,
+[data-theme="dark"] .text-stone-900,
+[data-theme="dark"] .text-stone-800,
+[data-theme="dark"] .text-stone-700 { color: var(--color-text) !important; }
+[data-theme="dark"] .text-stone-600,
+[data-theme="dark"] .text-stone-500,
+[data-theme="dark"] .text-stone-400 { color: var(--color-text-muted) !important; }
+[data-theme="dark"] [class*="border-stone-"] { border-color: var(--color-border) !important; }
+[data-theme="dark"] .hover\:bg-stone-100:hover { background-color: var(--color-surface-muted) !important; }
+
+[data-accent] [class*="text-teal-"] { color: var(--color-accent) !important; }
+[data-accent] [class*="bg-teal-50"] { background-color: var(--color-accent-soft) !important; }
+[data-accent] [class*="bg-teal-100"] { background-color: color-mix(in srgb, var(--color-accent) 14%, var(--color-background)) !important; }
+[data-accent] [class*="bg-teal-400"],
+[data-accent] [class*="bg-teal-500"],
+[data-accent] [class*="bg-teal-600"],
+[data-accent] [class*="bg-teal-700"] { background-color: var(--color-accent) !important; }
+[data-accent] [class*="border-teal-"] { border-color: color-mix(in srgb, var(--color-accent) 45%, transparent) !important; }
+[data-accent] [class*="ring-teal-"] { --tw-ring-color: color-mix(in srgb, var(--color-accent) 35%, transparent) !important; }
+[data-accent] [class*="hover\\:bg-teal-"]:hover { background-color: var(--color-accent-hover) !important; }
+[data-accent] [class*="hover\\:text-teal-"]:hover { color: var(--color-accent-hover) !important; }
+[data-accent] .focus-visible\:ring-teal-600:focus-visible,
+[data-accent] .focus-visible\:ring-teal-300:focus-visible { --tw-ring-color: var(--color-focus) !important; }
+
+.appearance-popover { animation: appearanceIn 150ms ease-out both; }
+@keyframes appearanceIn { from { opacity: 0; transform: translateY(-4px) scale(0.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
 }
 
 @keyframes serviceReveal {

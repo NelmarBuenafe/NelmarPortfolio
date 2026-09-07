@@ -5,6 +5,20 @@
     <link rel="icon" type="image/png" href="/nelmar-mark.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Nelmar | Portfolio</title>
+    <script>
+      (() => {
+        try {
+          const theme = localStorage.getItem("portfolio-theme");
+          const accent = localStorage.getItem("portfolio-accent");
+          const resolved = theme === "dark" || (theme !== "light" && matchMedia("(prefers-color-scheme: dark)").matches) ? "dark" : "light";
+          document.documentElement.dataset.theme = resolved;
+          document.documentElement.dataset.accent = ["teal", "blue", "violet", "amber"].includes(accent) ? accent : "teal";
+        } catch {
+          document.documentElement.dataset.theme = "light";
+          document.documentElement.dataset.accent = "teal";
+        }
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

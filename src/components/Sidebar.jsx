@@ -15,6 +15,7 @@ import {
   PanelLeftOpen,
 } from "lucide-react";
 import ProfileImage from "../assets/formal2.png";
+import AppearanceMenu from "./AppearanceMenu";
 
 const menu = [
   { path: "/", label: "Home", icon: House, end: true },
@@ -57,17 +58,18 @@ function Sidebar({ collapsed, onToggle }) {
           </div>
         </div>
 
-        <button
-          type="button"
-          onClick={() => setOpen((value) => !value)}
-          className={`flex h-10 w-10 items-center justify-center rounded-xl border border-stone-200 bg-white text-stone-700 shadow-sm transition hover:border-teal-300 hover:bg-teal-50 hover:text-teal-800 ${
-            open ? "pointer-events-none invisible" : ""
-          }`}
-          aria-label={open ? "Close navigation" : "Open navigation"}
-          aria-expanded={open}
-        >
-          {open ? <X size={22} /> : <Menu size={22} />}
-        </button>
+        <div className="flex items-center gap-2">
+          <AppearanceMenu />
+          <button
+            type="button"
+            onClick={() => setOpen((value) => !value)}
+            className="flex h-10 w-10 items-center justify-center rounded-xl border border-stone-200 bg-white text-stone-700 shadow-sm transition hover:border-teal-300 hover:bg-teal-50 hover:text-teal-800"
+            aria-label={open ? "Close navigation" : "Open navigation"}
+            aria-expanded={open}
+          >
+            {open ? <X size={22} /> : <Menu size={22} />}
+          </button>
+        </div>
       </header>
 
       <div
@@ -97,15 +99,18 @@ function Sidebar({ collapsed, onToggle }) {
 
         <div className="flex min-h-full flex-col pb-2">
           <div className={`relative mb-7 text-center ${collapsed ? "pt-12" : ""}`}>
-            <button
-              type="button"
-              onClick={onToggle}
-              className={`absolute right-0 top-0 hidden p-2 text-stone-400 transition hover:text-teal-300 md:block ${collapsed ? "left-1/2 -translate-x-1/2" : ""}`}
-              aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
-              title={collapsed ? "Expand sidebar" : "Collapse sidebar"}
-            >
-              {collapsed ? <PanelLeftOpen size={18} /> : <PanelLeftClose size={18} />}
-            </button>
+            <div className={`absolute right-0 top-0 hidden items-center gap-1 md:flex ${collapsed ? "left-1/2 -translate-x-1/2" : ""}`}>
+              <AppearanceMenu compact={collapsed} />
+              <button
+                type="button"
+                onClick={onToggle}
+                className="flex h-10 w-10 items-center justify-center rounded-xl p-2 text-stone-400 transition hover:bg-white/10 hover:text-teal-300"
+                aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
+                title={collapsed ? "Expand sidebar" : "Collapse sidebar"}
+              >
+                {collapsed ? <PanelLeftOpen size={18} /> : <PanelLeftClose size={18} />}
+              </button>
+            </div>
             <button
               type="button"
               onClick={() => setShowPhoto((value) => !value)}

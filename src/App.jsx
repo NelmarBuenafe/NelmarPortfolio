@@ -8,7 +8,7 @@ function App() {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
 
   return (
-    <div className="min-h-screen bg-[#f7f9f8] text-[#17211f]">
+    <div className="app-shell min-h-screen">
       <ScrollToTop />
       <Sidebar collapsed={sidebarCollapsed} onToggle={() => setSidebarCollapsed((value) => !value)} />
 

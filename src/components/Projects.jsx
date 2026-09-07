@@ -1,6 +1,5 @@
 import {
   ExternalLink,
-  FolderGit2,
   ArrowUpRight,
   Smartphone,
 } from "lucide-react";
