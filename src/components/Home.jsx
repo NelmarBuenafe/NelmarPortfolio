@@ -12,31 +12,7 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import BreedSmartImage from "../assets/BreedSmart.png";
-import ParkourGameImage from "../assets/ParkourGame.png";
 import ProfileImage from "../assets/formal.jpg";
-
-const projects = [
-  {
-    name: "BreedSmart",
-    type: "Capstone project",
-    description:
-      "A livestock management app for organizing breeding records and farmer workflows.",
-    technologies: ["React", "React Native", "MongoDB"],
-    image: BreedSmartImage,
-    imageAlt: "BreedSmart cattle care dashboard preview",
-    demo: "https://www.breedsmartoton.site/",
-  },
-  {
-    name: "Shinobi GameDev",
-    type: "2D game development",
-    description:
-      "A pixel-art action platformer featuring combat, shield mechanics, collectibles, hazards, and exploration across industrial levels.",
-    technologies: ["Game Development", "2D Platformer", "Pixel Art"],
-    image: ParkourGameImage,
-    imageAlt: "Shinobi GameDev pixel-art platformer preview",
-    github: "https://github.com/NelmarBuenafe/Shinobi-GameDev",
-  },
-];
 
 const services = [
   {
@@ -224,33 +200,66 @@ function Home() {
         </div>
       </section>
 
-      <section aria-labelledby="selected-work-heading">
+      <section aria-labelledby="featured-project-heading">
         <SectionIntro
-          label="Selected Work"
-          title="A few things I&apos;ve built."
-          description="Academic and personal projects where design thinking meets practical development."
-          id="selected-work-heading"
+          label="Featured Project"
+          title="BreedSmart"
+          description="A capstone project built around practical tools for livestock and breeding management."
+          id="featured-project-heading"
         />
 
-        <div className="grid gap-6 lg:grid-cols-2">
-          {projects.map((project, index) => (
-            <Reveal key={project.name} delay={index === 0 ? "delay-75" : "delay-150"}>
-              <ProjectCard project={project} />
-            </Reveal>
-          ))}
-        </div>
+        <article className="grid overflow-hidden rounded-[2rem] border border-stone-200 bg-white shadow-sm lg:grid-cols-[1.15fr_0.85fr]">
+          <Reveal className="flex min-h-72 items-center bg-stone-100 p-4 sm:p-6 lg:min-h-full" delay="delay-75">
+            <div className="group w-full overflow-hidden rounded-[1.5rem] border border-stone-200 bg-white p-3 shadow-md transition duration-500 hover:shadow-xl">
+              <img
+                src={BreedSmartImage}
+                alt="BreedSmart livestock and breeding management system preview"
+                className="aspect-[16/10] w-full rounded-xl object-contain transition duration-500 group-hover:scale-[1.02]"
+              />
+            </div>
+          </Reveal>
 
-        <div className="mt-6 flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-stone-200 bg-white/70 px-5 py-4">
-          <p className="text-sm text-stone-600">
-            Looking for the parking management system and other academic work?
-          </p>
-          <Link
-            to="/projects"
-            className="inline-flex items-center gap-2 text-sm font-semibold text-teal-700 transition hover:text-teal-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-600 focus-visible:ring-offset-2"
-          >
-            View all projects <ArrowRight size={16} />
-          </Link>
-        </div>
+          <Reveal className="flex flex-col justify-center p-6 sm:p-8 lg:p-10" delay="delay-150">
+            <span className="w-fit rounded-full border border-teal-200 bg-teal-50 px-3 py-1.5 text-xs font-bold uppercase tracking-[0.16em] text-teal-700">
+              Capstone Project
+            </span>
+            <h3 className="mt-4 text-3xl font-bold tracking-tight text-stone-950 sm:text-4xl">
+              BreedSmart
+            </h3>
+            <p className="mt-4 leading-7 text-stone-600">
+              BreedSmart is a multi-platform livestock and breeding management system created for the Iloilo Agriculture&apos;s Office. It connects an offline-capable mobile application for farmers and field technicians with a web dashboard for breeding records, animal health, scheduling, reports, and analytics.
+            </p>
+
+            <div className="mt-6 flex flex-wrap gap-2" aria-label="BreedSmart technologies">
+              {["React", "React Native", "Tailwind CSS", "Node.js", "Express", "MongoDB"].map((technology, index) => (
+                <span
+                  key={technology}
+                  className="rounded-full border border-teal-100 bg-teal-50 px-3 py-1.5 text-xs font-medium text-teal-700 motion-safe:animate-[serviceReveal_400ms_ease-out_both]"
+                  style={{ animationDelay: `${index * 60}ms` }}
+                >
+                  {technology}
+                </span>
+              ))}
+            </div>
+
+            <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+              <a
+                href="https://www.breedsmartoton.site/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-teal-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-teal-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-600 focus-visible:ring-offset-2"
+              >
+                View BreedSmart <ExternalLink size={16} aria-hidden="true" />
+              </a>
+              <Link
+                to="/projects"
+                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-stone-200 px-5 py-3 text-sm font-semibold text-stone-700 transition hover:border-teal-300 hover:bg-teal-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-600 focus-visible:ring-offset-2"
+              >
+                View Project Details <ArrowRight size={16} aria-hidden="true" />
+              </Link>
+            </div>
+          </Reveal>
+        </article>
       </section>
 
       <section aria-labelledby="what-i-do-heading">
@@ -366,60 +375,6 @@ function InfoCard({ className, icon: Icon, label, value }) {
         </div>
       </div>
     </div>
-  );
-}
-
-function ProjectCard({ project }) {
-  return (
-    <article className="group flex h-full flex-col overflow-hidden rounded-[1.5rem] border border-stone-200 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl">
-      <div className="overflow-hidden border-b border-stone-100 bg-stone-100 p-2">
-        <img
-          src={project.image}
-          alt={project.imageAlt}
-          className="aspect-[16/9] w-full rounded-xl object-cover transition duration-500 group-hover:scale-[1.03]"
-        />
-      </div>
-      <div className="flex flex-1 flex-col p-5 sm:p-6">
-        <p className="text-xs font-bold uppercase tracking-[0.18em] text-teal-700">{project.type}</p>
-        <h3 className="mt-2 text-2xl font-bold tracking-tight text-stone-950">{project.name}</h3>
-        <p className="mt-3 leading-7 text-stone-600">{project.description}</p>
-        <div className="mt-5 flex flex-wrap gap-2">
-          {project.technologies.map((technology) => (
-            <span key={technology} className="rounded-full border border-teal-100 bg-teal-50 px-3 py-1.5 text-xs font-medium text-teal-700">
-              {technology}
-            </span>
-          ))}
-        </div>
-        <div className="mt-auto flex flex-wrap gap-3 pt-6">
-          <Link
-            to="/projects"
-            className="inline-flex items-center gap-2 rounded-lg bg-[#10201f] px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-teal-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-600 focus-visible:ring-offset-2"
-          >
-            Project details <ArrowRight size={15} />
-          </Link>
-          {project.demo && (
-            <a
-              href={project.demo}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-lg border border-stone-200 px-4 py-2.5 text-sm font-semibold text-stone-700 transition hover:border-teal-300 hover:bg-teal-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-600 focus-visible:ring-offset-2"
-            >
-              Live demo <ExternalLink size={15} />
-            </a>
-          )}
-          {project.github && (
-            <a
-              href={project.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-lg border border-stone-200 px-4 py-2.5 text-sm font-semibold text-stone-700 transition hover:border-teal-300 hover:bg-teal-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-600 focus-visible:ring-offset-2"
-            >
-              GitHub <ExternalLink size={15} />
-            </a>
-          )}
-        </div>
-      </div>
-    </article>
   );
 }
 
