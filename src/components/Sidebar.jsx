@@ -10,7 +10,6 @@ import {
   Mail,
   Menu,
   X,
-  Download,
   PanelLeftClose,
   PanelLeftOpen,
 } from "lucide-react";
