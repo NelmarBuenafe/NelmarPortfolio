@@ -121,8 +121,6 @@ function Home() {
   return (
     <div className="space-y-24 pb-8 sm:space-y-32">
       <section className="relative isolate flex min-h-[calc(100vh-8rem)] items-center overflow-hidden py-8 sm:py-12">
-        <div className="pointer-events-none absolute -right-28 top-16 -z-10 h-72 w-72 rounded-full bg-teal-100/60 blur-3xl" aria-hidden="true" />
-        <div className="pointer-events-none absolute bottom-0 left-1/3 -z-10 h-32 w-32 rounded-full border border-teal-200/70" aria-hidden="true" />
 
         <div className="grid w-full items-center gap-14 lg:grid-cols-[1fr_0.82fr] lg:gap-20">
           <div className="max-w-2xl">

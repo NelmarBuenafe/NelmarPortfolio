@@ -82,7 +82,7 @@ function Sidebar({ collapsed, onToggle }) {
       />
 
       <aside
-        className={`fixed inset-y-0 left-0 z-50 box-border w-[min(86vw,21rem)] transform overflow-y-auto border-r border-teal-900/70 bg-[#10201f] p-4 text-white shadow-2xl shadow-black/30 transition-transform duration-300 ease-out md:translate-x-0 ${collapsed ? "md:w-20 md:p-3" : "md:w-72 md:p-6"} ${
+        className={`fixed inset-y-0 left-0 z-50 box-border w-[min(86vw,21rem)] transform overflow-y-hidden border-r border-teal-900/70 bg-[#10201f] p-4 text-white shadow-2xl shadow-black/30 transition-transform duration-300 ease-out md:translate-x-0 ${collapsed ? "md:w-20 md:p-3" : "md:w-72 md:p-6"} ${
           open ? "translate-x-0" : "-translate-x-full"
         }`}
       >
@@ -166,10 +166,6 @@ function Sidebar({ collapsed, onToggle }) {
               <p className="mt-2 text-sm leading-6 text-stone-200">UI/UX internships, design projects, and learning opportunities</p>
             </div>
 
-            <a href="/resume.pdf" download className="flex items-center justify-center gap-2 rounded-xl bg-teal-400 px-4 py-3 text-sm font-semibold text-[#10201f] transition hover:bg-teal-300">
-              <Download size={17} />
-              Download Resume
-            </a>
           </div>
         </div>
       </aside>
