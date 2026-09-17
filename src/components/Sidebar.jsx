@@ -1,20 +1,10 @@
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import {
-  House,
-  UserRound,
-  BriefcaseBusiness,
-  Code2,
-  FolderGit2,
-  Sparkles,
-  Mail,
-  Menu,
-  X,
-  PanelLeftClose,
-  PanelLeftOpen,
+  ArrowRight, House, UserRound, BriefcaseBusiness, Code2, FolderGit2, Sparkles, Mail, Menu, X,
 } from "lucide-react";
-import ProfileImage from "../assets/formal2.png";
-import AppearanceMenu from "./AppearanceMenu";
+import { FaFacebookF, FaGithub, FaLinkedin } from "react-icons/fa";
+import AppearanceMenu, { ThemeToggle } from "./AppearanceMenu";
 
 const menu = [
   { path: "/", label: "Home", icon: House, end: true },
@@ -26,149 +16,76 @@ const menu = [
   { path: "/contact", label: "Contact", icon: Mail },
 ];
 
-function Sidebar({ collapsed, onToggle }) {
+function NavItems({ onNavigate, mobile = false }) {
+  return (
+    <nav className={mobile ? "space-y-1" : "portfolio-rail-links"} aria-label="Main navigation">
+      {menu.map(({ path, label, icon: Icon, end }) => (
+        <NavLink
+          key={path}
+          to={path}
+          end={end}
+          onClick={onNavigate}
+          className={({ isActive }) => mobile
+            ? `flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-semibold transition ${isActive ? "bg-teal-50 text-teal-800" : "text-stone-600 hover:bg-stone-100"}`
+            : `portfolio-rail-link ${isActive ? "is-active" : ""}`}
+          aria-label={!mobile ? label : undefined}
+          title={!mobile ? label : undefined}
+        >
+          <Icon size={19} strokeWidth={1.8} />
+          {mobile && <span>{label}</span>}
+          {!mobile && <span className="portfolio-tooltip">{label}</span>}
+        </NavLink>
+      ))}
+    </nav>
+  );
+}
+
+function Sidebar() {
   const [open, setOpen] = useState(false);
-  const [showPhoto, setShowPhoto] = useState(false);
 
   useEffect(() => {
-    const closeOnEscape = (event) => {
-      if (event.key === "Escape") setOpen(false);
-    };
-
-    document.addEventListener("keydown", closeOnEscape);
+    const onKeyDown = (event) => event.key === "Escape" && setOpen(false);
+    document.addEventListener("keydown", onKeyDown);
     document.body.style.overflow = open ? "hidden" : "";
-
     return () => {
-      document.removeEventListener("keydown", closeOnEscape);
+      document.removeEventListener("keydown", onKeyDown);
       document.body.style.overflow = "";
     };
   }, [open]);
 
   return (
     <>
-      <header className="fixed left-0 right-0 top-0 z-50 flex h-[4.5rem] items-center justify-between border-b border-stone-200/80 bg-white/95 px-4 shadow-sm shadow-stone-900/5 backdrop-blur md:hidden">
-        <div className="flex items-center gap-3">
-          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-teal-700 text-white shadow-sm shadow-teal-900/20">
-            <UserRound size={18} strokeWidth={1.8} />
-          </div>
-          <div>
-            <p className="text-sm font-bold leading-tight text-stone-900">Nelmar Buenafe</p>
-            <p className="mt-0.5 text-[11px] font-medium text-stone-500">UI/UX Design Student</p>
-          </div>
-        </div>
-
-        <div className="flex items-center gap-2">
-          <AppearanceMenu />
-          <button
-            type="button"
-            onClick={() => setOpen((value) => !value)}
-            className="flex h-10 w-10 items-center justify-center rounded-xl border border-stone-200 bg-white text-stone-700 shadow-sm transition hover:border-teal-300 hover:bg-teal-50 hover:text-teal-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 focus-visible:ring-offset-2"
-            aria-label={open ? "Close navigation" : "Open navigation"}
-            aria-expanded={open}
-            title={open ? "Close navigation" : "Open navigation"}
-          >
-            {open ? <X size={22} /> : <Menu size={22} />}
-          </button>
+      <header className="portfolio-mobile-header flex w-full flex-nowrap items-center justify-between gap-2 px-3 py-2 md:hidden">
+        <NavLink to="/" className="flex min-w-0 flex-1 items-center gap-2" onClick={() => setOpen(false)}>
+          <span className="portfolio-monogram shrink-0">NB</span>
+          <span className="min-w-0">
+            <strong className="block text-sm leading-tight text-stone-950">Nelmar Buenafe</strong>
+            <small className="mt-0.5 block text-[11px] leading-tight text-stone-500">BS Information Technology</small>
+          </span>
+        </NavLink>
+        <div className="portfolio-mobile-controls flex shrink-0 flex-nowrap items-center gap-1.5">
+          <AppearanceMenu accentOnly />
+          <ThemeToggle />
+          <button type="button" onClick={() => setOpen((value) => !value)} className="portfolio-menu-button shrink-0" aria-label={open ? "Close navigation" : "Open navigation"}>{open ? <X size={20} /> : <Menu size={21} />}</button>
         </div>
       </header>
 
-      <div
-        onClick={() => setOpen(false)}
-        className={`fixed inset-0 z-40 bg-stone-950/45 backdrop-blur-[2px] transition-opacity duration-300 md:hidden ${
-          open ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"
-        }`}
-        aria-hidden="true"
-      />
-
-      <aside
-        className={`fixed inset-y-0 left-0 z-50 box-border w-[min(86vw,21rem)] transform overflow-y-hidden border-r border-teal-900/70 bg-[#10201f] p-4 text-white shadow-2xl shadow-black/30 transition-transform duration-300 ease-out md:translate-x-0 ${collapsed ? "md:w-20 md:p-3" : "md:w-72 md:p-6"} ${
-          open ? "translate-x-0" : "-translate-x-full"
-        }`}
-      >
-        <div className="mb-5 flex items-center justify-between md:hidden">
-          <span className="text-xs font-semibold uppercase tracking-[0.18em] text-teal-300">Menu</span>
-          <button
-            type="button"
-            onClick={() => setOpen(false)}
-            className="flex h-9 w-9 items-center justify-center rounded-lg text-stone-300 transition hover:bg-white/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#10201f]"
-            aria-label="Close navigation"
-            title="Close navigation"
-          >
-            <X size={20} />
-          </button>
+      <div className={`fixed inset-0 z-40 bg-slate-950/25 backdrop-blur-sm transition md:hidden ${open ? "opacity-100" : "pointer-events-none opacity-0"}`} onClick={() => setOpen(false)} aria-hidden="true" />
+      <aside className={`portfolio-mobile-drawer md:hidden ${open ? "translate-x-0" : "-translate-x-full"}`}>
+        <div className="mb-8 flex items-start justify-between"><div className="flex items-center gap-3"><span className="portfolio-monogram">NB</span><span><strong className="block text-sm leading-tight text-stone-950">Nelmar Buenafe</strong><small className="text-xs text-stone-500">BS Information Technology</small></span></div><button type="button" onClick={() => setOpen(false)} className="portfolio-menu-button" aria-label="Close navigation"><X size={20} /></button></div>
+        <NavItems mobile onNavigate={() => setOpen(false)} />
+        <div className="portfolio-drawer-actions">
+          <div className="flex shrink-0 items-center gap-2"><AppearanceMenu accentOnly /><ThemeToggle /></div>
+          <NavLink to="/contact" onClick={() => setOpen(false)} className="portfolio-hire-button">Hire Me <ArrowRight size={16} /></NavLink>
         </div>
-
-        <div className="flex min-h-full flex-col pb-2">
-          <div className={`mb-4 flex hidden md:flex ${collapsed ? "flex-col items-center gap-2" : "justify-end gap-2"}`}>
-            <button
-              type="button"
-              onClick={onToggle}
-              className="flex h-10 w-10 items-center justify-center rounded-xl p-2 text-stone-400 transition hover:bg-white/10 hover:text-teal-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#10201f]"
-              aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
-              title={collapsed ? "Expand sidebar" : "Collapse sidebar"}
-            >
-              {collapsed ? <PanelLeftOpen size={18} /> : <PanelLeftClose size={18} />}
-            </button>
-            <AppearanceMenu compact={collapsed} />
-          </div>
-
-          <div className="mb-7 text-center">
-            <button
-              type="button"
-              onClick={() => setShowPhoto((value) => !value)}
-              className={`group relative mx-auto mb-4 block overflow-hidden rounded-full border-4 border-teal-700/70 bg-gradient-to-br from-teal-400 to-teal-800 shadow-lg shadow-teal-950/30 ${collapsed ? "h-12 w-12" : "h-28 w-28"}`}
-              title="Hover or click to see my photo"
-              aria-label="Toggle profile photo"
-              aria-pressed={showPhoto}
-            >
-              <div className={`flex h-full w-full items-center justify-center text-[#10201f] transition-opacity duration-200 ${showPhoto ? "opacity-0" : "group-hover:opacity-0"}`}>
-                <UserRound size={collapsed ? 24 : 50} strokeWidth={1.5} />
-              </div>
-              <img
-                src={ProfileImage}
-                alt="Nelmar Buenafe"
-                className={`pointer-events-none absolute inset-0 h-full w-full object-cover transition-opacity duration-200 ${showPhoto ? "opacity-100" : "opacity-0 group-hover:opacity-100"}`}
-              />
-            </button>
-
-            <h1 className={`${collapsed ? "md:hidden" : ""} text-xl font-bold`}>Nelmar Buenafe</h1>
-
-            <p className={`${collapsed ? "md:hidden" : ""} mt-1 text-sm text-stone-400`}>
-              BS Information Technology
-            </p>
-          </div>
-
-          <nav className="space-y-1" aria-label="Main navigation">
-            {menu.map(({ path, label, icon: Icon, end }) => (
-              <NavLink
-                key={path}
-                to={path}
-                end={end}
-                onClick={() => setOpen(false)}
-                className={({ isActive }) =>
-                  `flex w-full items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium transition ${collapsed ? "md:justify-center md:px-2" : ""} ${
-                    isActive
-                      ? "bg-teal-400 text-[#10201f] shadow-lg shadow-teal-950/20"
-                      : "text-stone-300 hover:bg-white/10 hover:text-white"
-                  }`
-                }
-              >
-                <Icon size={18} strokeWidth={1.8} />
-                <span className={collapsed ? "md:hidden" : ""}>{label}</span>
-              </NavLink>
-            ))}
-          </nav>
-
-          <div className={`mt-6 space-y-3 md:mt-auto ${collapsed ? "md:hidden" : ""}`}>
-            <div className="rounded-2xl border border-teal-900/80 bg-[#172d2b] p-4">
-              <p className="text-xs font-semibold uppercase tracking-wider text-stone-500">Available for</p>
-              <p className="mt-2 text-sm leading-6 text-stone-200">UI/UX internships, design projects, and learning opportunities</p>
-            </div>
-
-          </div>
-        </div>
+        <div className="portfolio-drawer-connect"><p>Connect</p><div><a href="https://www.facebook.com/nelmar.buenafe" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><FaFacebookF /></a><a href="mailto:buenafenelmar7@gmail.com" aria-label="Email"><Mail size={18} /></a><a href="https://github.com/NelmarBuenafe" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><FaGithub /></a><a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><FaLinkedin /></a></div></div>
       </aside>
 
+      <aside className="portfolio-rail hidden md:flex" aria-label="Portfolio navigation">
+        <NavLink to="/" className="portfolio-monogram" aria-label="Nelmar Buenafe home" title="Nelmar Buenafe">NB</NavLink>
+        <div className="portfolio-rail-appearance"><AppearanceMenu compact /></div>
+        <NavItems />
+      </aside>
     </>
   );
 }

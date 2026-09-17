@@ -96,7 +96,7 @@ function Home() {
 
   return (
     <div className="space-y-24 pb-8 sm:space-y-32">
-      <section className="relative isolate flex min-h-[calc(100vh-8rem)] items-center overflow-hidden py-8 sm:py-12">
+      <section className="portfolio-hero relative isolate flex min-h-[calc(100vh-8rem)] items-center overflow-hidden py-8 sm:py-12">
 
         <div className="grid w-full items-center gap-14 lg:grid-cols-[1fr_0.82fr] lg:gap-20">
           <div className="max-w-2xl">
@@ -110,7 +110,7 @@ function Home() {
             </Reveal>
 
             <Reveal delay="delay-75">
-              <h1 className="text-5xl font-bold leading-[1.04] tracking-[-0.04em] text-stone-950 sm:text-6xl lg:text-7xl">
+              <h1 className="portfolio-hero-title text-5xl font-bold leading-[1.04] tracking-[-0.04em] text-stone-950 sm:text-6xl lg:text-7xl">
                 Hi, I&apos;m{" "}
                 <span className="block min-h-[1.08em] text-teal-700 sm:inline-block sm:min-w-[14ch]">
                   <span className="sr-only">Nelmar Buenafe</span>
@@ -169,7 +169,7 @@ function Home() {
           </div>
 
           <Reveal className="mx-auto w-full max-w-md" delay="delay-150">
-            <div className="relative px-3 pb-8 pt-14 sm:px-5">
+            <div className="portfolio-photo-stage relative px-3 pb-8 pt-14 sm:px-5">
               <div className="absolute -right-1 top-1 h-24 w-24 rounded-3xl border border-teal-200 sm:-right-2" aria-hidden="true" />
               <div className="absolute -bottom-1 left-0 h-24 w-24 rounded-3xl border border-stone-300" aria-hidden="true" />
 
@@ -364,7 +364,7 @@ function CredibilityItem({ text }) {
 
 function InfoCard({ className, icon: Icon, label, value }) {
   return (
-    <div className={`absolute rounded-2xl border border-stone-200 bg-white p-3 shadow-lg shadow-stone-900/10 transition duration-200 hover:-translate-y-1 sm:p-4 ${className}`}>
+    <div className={`portfolio-info-card absolute rounded-2xl border border-stone-200 bg-white p-3 shadow-lg shadow-stone-900/10 transition duration-200 hover:-translate-y-1 sm:p-4 ${className}`}>
       <div className="flex items-center gap-2.5 sm:gap-3">
         <div className="rounded-xl bg-teal-600 p-2 text-white">
           <Icon size={17} aria-hidden="true" />

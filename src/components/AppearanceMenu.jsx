@@ -16,7 +16,7 @@ const accentOptions = [
   { value: "amber", label: "Amber", color: "#b45309" },
 ];
 
-function AppearanceMenu({ compact = false }) {
+function AppearanceMenu({ compact = false, accentOnly = false }) {
   const { theme, accent, setTheme, setAccent } = useAppearance();
   const [open, setOpen] = useState(false);
   const rootRef = useRef(null);
@@ -109,10 +109,10 @@ function AppearanceMenu({ compact = false }) {
           else setOpen(true);
         }}
         className={`appearance-trigger flex items-center justify-center rounded-xl border border-stone-200 bg-white text-stone-700 shadow-sm transition hover:border-teal-300 hover:bg-teal-50 hover:text-teal-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 focus-visible:ring-offset-2 ${compact ? "h-10 w-10" : "h-10 w-10"}`}
-        aria-label="Appearance settings"
+        aria-label={accentOnly ? "Choose accent color" : "Appearance settings"}
         aria-expanded={open}
         aria-controls={panelId}
-        title="Appearance settings"
+        title={accentOnly ? "Choose accent color" : "Appearance settings"}
       >
         <Palette size={19} aria-hidden="true" />
       </button>
@@ -123,7 +123,7 @@ function AppearanceMenu({ compact = false }) {
             ref={panelRef}
             id={panelId}
             role="dialog"
-            aria-label="Appearance"
+            aria-label={accentOnly ? "Accent color" : "Appearance"}
             className="appearance-popover fixed z-[9999] max-h-[calc(100vh-24px)] w-[min(19rem,calc(100vw-24px))] overflow-y-auto rounded-2xl border border-stone-200 bg-white p-4 text-left shadow-2xl shadow-stone-900/15"
             style={{
               left: panelPosition?.left ?? -9999,
@@ -133,27 +133,29 @@ function AppearanceMenu({ compact = false }) {
           >
           <div className="flex items-center gap-2">
             <Palette size={17} className="text-teal-700" aria-hidden="true" />
-            <h2 className="text-sm font-bold text-stone-950">Appearance</h2>
+            <h2 className="text-sm font-bold text-stone-950">{accentOnly ? "Accent color" : "Appearance"}</h2>
           </div>
 
-          <div className="mt-4" role="group" aria-label="Theme">
-            <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-stone-500">Theme</p>
-            <div className="grid grid-cols-3 gap-1 rounded-xl bg-stone-100 p-1">
-              {themeOptions.map(({ value, label, Icon }) => (
-                <button
-                  key={value}
-                  type="button"
-                  onClick={() => setTheme(value)}
-                  className={`flex min-h-10 items-center justify-center gap-1 rounded-lg px-2 text-xs font-semibold transition ${theme === value ? "bg-white text-teal-800 shadow-sm" : "text-stone-500 hover:text-stone-900"}`}
-                  aria-pressed={theme === value}
-                >
-                  <Icon size={14} aria-hidden="true" />
-                  {label}
-                  {theme === value && <Check size={13} aria-hidden="true" />}
-                </button>
-              ))}
+          {!accentOnly && (
+            <div className="mt-4" role="group" aria-label="Theme">
+              <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-stone-500">Theme</p>
+              <div className="grid grid-cols-3 gap-1 rounded-xl bg-stone-100 p-1">
+                {themeOptions.map(({ value, label, Icon }) => (
+                  <button
+                    key={value}
+                    type="button"
+                    onClick={() => setTheme(value)}
+                    className={`flex min-h-10 items-center justify-center gap-1 rounded-lg px-2 text-xs font-semibold transition ${theme === value ? "bg-white text-teal-800 shadow-sm" : "text-stone-500 hover:text-stone-900"}`}
+                    aria-pressed={theme === value}
+                  >
+                    <Icon size={14} aria-hidden="true" />
+                    {label}
+                    {theme === value && <Check size={13} aria-hidden="true" />}
+                  </button>
+                ))}
+              </div>
             </div>
-          </div>
+          )}
 
           <div className="mt-4" role="group" aria-label="Accent color">
             <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-stone-500">Accent color</p>
@@ -177,6 +179,25 @@ function AppearanceMenu({ compact = false }) {
           document.body,
         )}
     </div>
+  );
+}
+
+export function ThemeToggle() {
+  const { resolvedTheme, setTheme } = useAppearance();
+  const dark = resolvedTheme === "dark";
+  const Icon = dark ? Sun : Moon;
+  const nextTheme = dark ? "light" : "dark";
+
+  return (
+    <button
+      type="button"
+      onClick={() => setTheme(nextTheme)}
+      className="theme-toggle inline-flex items-center justify-center rounded-xl border border-stone-200 bg-white text-stone-700 shadow-sm transition hover:border-teal-300 hover:bg-teal-50 hover:text-teal-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 focus-visible:ring-offset-2"
+      aria-label={`Switch to ${nextTheme} mode`}
+      title={`Switch to ${nextTheme} mode`}
+    >
+      <Icon size={19} aria-hidden="true" />
+    </button>
   );
 }
 

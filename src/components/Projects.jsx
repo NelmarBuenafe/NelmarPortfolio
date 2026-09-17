@@ -4,6 +4,7 @@ import { FaGithub } from "react-icons/fa";
 import SectionHeader from "./SectionHeader";
 import BreedSmartImage from "../assets/BreedSmart.png";
 import ParkourGameImage from "../assets/ParkourGame.png";
+import TicTacToeImage from "../assets/TicTakToe.png";
 
 const projects = [
   {
@@ -33,6 +34,20 @@ const projects = [
     liveUrl: "",
     repositoryUrl: "https://github.com/NelmarBuenafe/Shinobi-GameDev",
     featured: true,
+  },
+  {
+    id: "tictactoe",
+    title: "Tic-Tac-Toe",
+    category: "Game Development",
+    projectType: "Java Desktop Game",
+    shortDescription:
+      "A two-player Tic-Tac-Toe game with a modern Java Swing interface, score tracking, round controls, and winning-cell highlights.",
+    technologies: ["Java", "Swing", "Desktop Application", "Game Development"],
+    image: TicTacToeImage,
+    imageAlt: "Tic-Tac-Toe Java Swing game preview",
+    liveUrl: "",
+    repositoryUrl: "https://github.com/NelmarBuenafe/TicTacToe",
+    featured: false,
   },
 ];
 
