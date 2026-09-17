@@ -7,6 +7,7 @@ import {
   Wrench,
 } from "lucide-react";
 import SectionHeader from "./SectionHeader";
+import Reveal from "./Reveal";
 
 const skillGroups = [
   {
@@ -51,9 +52,9 @@ function Skills() {
       />
 
       <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-        {skillGroups.map(({ icon: Icon, title, skills }) => (
+        {skillGroups.map(({ icon: Icon, title, skills }, index) => (
+          <Reveal key={title} delay={index * 70}>
           <article
-            key={title}
             className="rounded-2xl border border-stone-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
           >
             <div className="mb-5 flex items-center gap-3">
@@ -67,13 +68,14 @@ function Skills() {
               {skills.map((skill) => (
                 <span
                   key={skill}
-                  className="rounded-full border border-stone-200 bg-stone-50 px-3 py-1.5 text-xs font-medium text-stone-600"
+                  className="portfolio-tech-tag rounded-full border border-stone-200 bg-stone-50 px-3 py-1.5 text-xs font-medium text-stone-600"
                 >
                   {skill}
                 </span>
               ))}
             </div>
           </article>
+          </Reveal>
         ))}
       </div>
     </section>

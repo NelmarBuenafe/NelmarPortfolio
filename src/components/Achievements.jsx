@@ -5,6 +5,7 @@ import CiscoCert from "../assets/CiscoCert.png";
 import BasicJSCert from "../assets/BasicJSCert.jpg";
 import WebDesignCert from "../assets/WebDesignCert.jpg";
 import NelmarCert from "../assets/NelmarCert.jpg";
+import Reveal from "./Reveal";
 
 const achievements = [
   {
@@ -65,9 +66,9 @@ function Achievements({ embedded = false }) {
       )}
 
       <div className="grid gap-5 md:grid-cols-2">
-        {achievements.map(({ icon: Icon, year, title, description, image, certificate }) => (
+        {achievements.map(({ icon: Icon, year, title, description, image, certificate }, index) => (
+          <Reveal key={title} delay={index * 70}>
           <article
-            key={title}
             className="group rounded-2xl border border-stone-200 bg-white p-7 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-md"
           >
             {image ? (
@@ -101,6 +102,7 @@ function Achievements({ embedded = false }) {
               </button>
             )}
           </article>
+          </Reveal>
         ))}
       </div>
 

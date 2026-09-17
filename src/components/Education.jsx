@@ -1,5 +1,6 @@
 import { GraduationCap, Calendar, BookOpen } from "lucide-react";
 import SectionHeader from "./SectionHeader";
+import Reveal from "./Reveal";
 
 const education = [
   {
@@ -30,9 +31,9 @@ function Education({ embedded = false }) {
       )}
 
       <div className="space-y-5">
-        {education.map((item) => (
+        {education.map((item, index) => (
+          <Reveal key={item.degree} delay={index * 70}>
           <article
-            key={item.degree}
             className="rounded-2xl border border-stone-200 bg-white p-7 shadow-sm"
           >
             <div className="flex flex-col gap-5 sm:flex-row">
@@ -63,6 +64,7 @@ function Education({ embedded = false }) {
               </div>
             </div>
           </article>
+          </Reveal>
         ))}
       </div>
     </section>

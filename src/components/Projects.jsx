@@ -5,6 +5,7 @@ import SectionHeader from "./SectionHeader";
 import BreedSmartImage from "../assets/BreedSmart.png";
 import ParkourGameImage from "../assets/ParkourGame.png";
 import TicTacToeImage from "../assets/TicTakToe.png";
+import Reveal from "./Reveal";
 
 const projects = [
   {
@@ -97,7 +98,7 @@ function Projects() {
       </div>
 
       {visibleProjects.length > 0 ? (
-        <div className="grid gap-6 lg:grid-cols-2" aria-live="polite">
+        <div key={activeCategory} className="grid gap-6 lg:grid-cols-2" aria-live="polite">
           {visibleProjects.map((project, index) => (
             <ProjectCard key={project.id} project={project} index={index} />
           ))}
@@ -113,11 +114,11 @@ function Projects() {
 
 function ProjectCard({ project, index }) {
   return (
+    <Reveal className="h-full" delay={index * 70}>
     <article
-      className={`group flex h-full flex-col overflow-hidden rounded-3xl border bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl motion-safe:animate-[serviceReveal_500ms_ease-out_both] ${
+      className={`group flex h-full flex-col overflow-hidden rounded-3xl border bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl ${
         project.featured ? "border-teal-200 shadow-md" : "border-stone-200"
       }`}
-      style={{ animationDelay: `${index * 70}ms` }}
     >
       <ProjectMedia project={project} index={index} />
 
@@ -141,7 +142,7 @@ function ProjectCard({ project, index }) {
           {project.technologies.map((technology) => (
             <span
               key={technology}
-              className="rounded-full border border-teal-100 bg-teal-50 px-3 py-1.5 text-xs font-medium text-teal-700"
+              className="portfolio-tech-tag rounded-full border border-teal-100 bg-teal-50 px-3 py-1.5 text-xs font-medium text-teal-700"
             >
               {technology}
             </span>
@@ -156,6 +157,7 @@ function ProjectCard({ project, index }) {
         )}
       </div>
     </article>
+    </Reveal>
   );
 }
 

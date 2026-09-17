@@ -4,6 +4,7 @@ import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { useSearchParams } from "react-router-dom";
 import SectionHeader from "./SectionHeader";
 import { serviceOptions } from "../data/services";
+import Reveal from "./Reveal";
 
 const contactEmail = "buenafenelmar7@gmail.com";
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -94,6 +95,7 @@ function Contact() {
       />
 
       <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
+        <Reveal className="h-full" direction="left">
         <div className="h-full rounded-3xl bg-[#10201f] p-8 text-white shadow-xl shadow-teal-950/10 sm:p-10">
           <div className="inline-flex items-center gap-2 rounded-full border border-teal-400/30 bg-teal-400/10 px-3 py-1.5 text-xs font-semibold text-teal-300">
             <CircleCheck size={14} aria-hidden="true" />
@@ -126,12 +128,16 @@ function Contact() {
             Send me an email <ArrowUpRight size={16} />
           </a>
         </div>
+        </Reveal>
 
-        <div className="space-y-4">
-          {contactLinks.map(({ icon: Icon, label, value, href }) => (
-            <ContactCard key={label} icon={Icon} label={label} value={value} href={href} />
+        <Reveal className="space-y-4" delay={100} direction="right">
+          {contactLinks.map(({ icon: Icon, label, value, href }, index) => (
+            <Reveal key={label} delay={index * 60}>
+              <ContactCard icon={Icon} label={label} value={value} href={href} />
+            </Reveal>
           ))}
 
+          <Reveal delay={180}>
           <form onSubmit={handleSubmit} noValidate className="rounded-2xl border border-stone-200 bg-white p-6 shadow-sm sm:p-7">
             <h2 className="text-lg font-bold text-stone-950">Tell me about your project</h2>
             <p className="mt-1 text-sm text-stone-500">
@@ -183,7 +189,8 @@ function Contact() {
               {isOpeningEmail ? "Opening Email..." : "Submit Inquiry"}
             </button>
           </form>
-        </div>
+          </Reveal>
+        </Reveal>
       </div>
     </section>
   );

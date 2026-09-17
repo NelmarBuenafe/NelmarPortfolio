@@ -1,6 +1,9 @@
+import Reveal from "./Reveal";
+
 function SectionHeader({ label, title, description }) {
   return (
-    <header className="mb-10">
+    <Reveal className="mb-10">
+      <header>
       <p className="text-sm font-semibold uppercase tracking-[0.22em] text-teal-700">
         {label}
       </p>
@@ -16,7 +19,8 @@ function SectionHeader({ label, title, description }) {
           {description}
         </p>
       )}
-    </header>
+      </header>
+    </Reveal>
   );
 }
 

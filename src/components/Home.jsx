@@ -1,18 +1,16 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   ArrowRight,
   Check,
   Code2,
-  Download,
   ExternalLink,
-  FolderKanban,
   Lightbulb,
   MousePointer2,
-  Sparkles,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import BreedSmartImage from "../assets/BreedSmart.png";
-import ProfileImage from "../assets/formal.jpg";
+import ProfileImage from "../assets/hero-portrait.png";
+import Reveal from "./Reveal";
 
 const services = [
   {
@@ -142,14 +140,6 @@ function Home() {
                   View My Work
                   <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
                 </Link>
-                <a
-                  href="/resume.pdf"
-                  download
-                  className="inline-flex min-h-12 items-center gap-2 rounded-xl border border-stone-300 bg-white px-5 py-3 text-sm font-semibold text-stone-800 transition duration-200 hover:-translate-y-0.5 hover:border-teal-300 hover:bg-teal-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-600 focus-visible:ring-offset-2 active:translate-y-0"
-                >
-                  <Download size={17} />
-                  Download Resume
-                </a>
                 <Link
                   to="/contact"
                   className="inline-flex min-h-12 items-center px-2 text-sm font-semibold text-teal-700 underline decoration-teal-300 decoration-2 underline-offset-4 transition hover:text-teal-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-600 focus-visible:ring-offset-2"
@@ -159,41 +149,25 @@ function Home() {
               </div>
             </Reveal>
 
-            <Reveal delay="delay-300">
-              <div className="mt-12 grid max-w-xl gap-4 border-t border-stone-200 pt-6 sm:grid-cols-3 sm:gap-6">
-                <CredibilityItem text="BS Information Technology Student" />
-                <CredibilityItem text="UI/UX and Front-End Focus" />
-                <CredibilityItem text="Available for OJT and Internships" />
-              </div>
-            </Reveal>
+            <div className="mt-12 grid max-w-xl gap-4 border-t border-stone-200 pt-6 sm:grid-cols-3 sm:gap-6">
+              {[
+                "BS Information Technology Student",
+                "UI/UX and Front-End Focus",
+                "Available for OJT and Internships",
+              ].map((text, index) => (
+                <Reveal key={text} delay={300 + index * 70}>
+                  <CredibilityItem text={text} />
+                </Reveal>
+              ))}
+            </div>
           </div>
 
-          <Reveal className="mx-auto w-full max-w-md" delay="delay-150">
-            <div className="portfolio-photo-stage relative px-3 pb-8 pt-14 sm:px-5">
-              <div className="absolute -right-1 top-1 h-24 w-24 rounded-3xl border border-teal-200 sm:-right-2" aria-hidden="true" />
-              <div className="absolute -bottom-1 left-0 h-24 w-24 rounded-3xl border border-stone-300" aria-hidden="true" />
-
-              <div className="relative overflow-hidden rounded-[2rem] border border-stone-200 bg-white p-3 shadow-xl shadow-stone-900/10 transition duration-500 hover:-translate-y-1 hover:shadow-2xl">
-                <div className="overflow-hidden rounded-[1.5rem] bg-stone-100">
-                  <img
-                    src={ProfileImage}
-                    alt="Nelmar Buenafe in a formal black suit"
-                    className="aspect-[4/5] w-full object-cover"
-                  />
-                </div>
-              </div>
-
-              <InfoCard
-                className="-bottom-1 left-0 sm:-left-5"
-                icon={Sparkles}
-                label="Focus"
-                value="UI/UX Design"
-              />
-              <InfoCard
-                className="right-0 top-0 hidden sm:block"
-                icon={FolderKanban}
-                label="Currently building"
-                value="Digital experiences"
+          <Reveal className="portfolio-portrait-reveal mx-auto w-full max-w-md" delay={300}>
+            <div className="portfolio-photo-stage">
+              <img
+                src={ProfileImage}
+                alt="Nelmar Buenafe in a formal black suit"
+                className="portfolio-hero-portrait"
               />
             </div>
           </Reveal>
@@ -321,59 +295,11 @@ function Home() {
   );
 }
 
-function Reveal({ children, className = "", delay = "" }) {
-  const ref = useRef(null);
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const node = ref.current;
-    if (!node) return undefined;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.12 },
-    );
-
-    observer.observe(node);
-    return () => observer.disconnect();
-  }, []);
-
-  return (
-    <div
-      ref={ref}
-      className={`${className} motion-safe:transition motion-safe:duration-700 motion-safe:ease-out motion-safe:will-change-transform motion-safe:opacity-0 motion-safe:translate-y-4 ${visible ? "motion-safe:translate-y-0 motion-safe:opacity-100" : ""} ${delay}`}
-    >
-      {children}
-    </div>
-  );
-}
-
 function CredibilityItem({ text }) {
   return (
     <div className="flex items-start gap-2 text-sm leading-6 text-stone-600">
       <Check size={16} className="mt-1 shrink-0 text-teal-600" aria-hidden="true" />
       <span>{text}</span>
-    </div>
-  );
-}
-
-function InfoCard({ className, icon: Icon, label, value }) {
-  return (
-    <div className={`portfolio-info-card absolute rounded-2xl border border-stone-200 bg-white p-3 shadow-lg shadow-stone-900/10 transition duration-200 hover:-translate-y-1 sm:p-4 ${className}`}>
-      <div className="flex items-center gap-2.5 sm:gap-3">
-        <div className="rounded-xl bg-teal-600 p-2 text-white">
-          <Icon size={17} aria-hidden="true" />
-        </div>
-        <div>
-          <p className="text-[10px] font-bold uppercase tracking-wider text-stone-400 sm:text-xs">{label}</p>
-          <p className="mt-0.5 text-xs font-bold text-stone-900 sm:text-sm">{value}</p>
-        </div>
-      </div>
     </div>
   );
 }

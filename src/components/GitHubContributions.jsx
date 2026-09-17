@@ -1,7 +1,8 @@
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { ExternalLink } from "lucide-react";
 import { GitHubCalendar } from "react-github-calendar";
 import { FaGithub } from "react-icons/fa";
+import Reveal from "./Reveal";
 
 const GITHUB_USERNAME = "NelmarBuenafe";
 const GITHUB_PROFILE_URL = "https://github.com/NelmarBuenafe";
@@ -112,38 +113,6 @@ function GitHubContributions() {
         </div>
       </section>
     </Reveal>
-  );
-}
-
-function Reveal({ children }) {
-  const ref = useRef(null);
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const node = ref.current;
-    if (!node) return undefined;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.12 },
-    );
-
-    observer.observe(node);
-    return () => observer.disconnect();
-  }, []);
-
-  return (
-    <div
-      ref={ref}
-      className={`motion-safe:translate-y-4 motion-safe:opacity-0 motion-safe:transition motion-safe:duration-700 motion-safe:ease-out ${visible ? "motion-safe:translate-y-0 motion-safe:opacity-100" : ""}`}
-    >
-      {children}
-    </div>
   );
 }
 

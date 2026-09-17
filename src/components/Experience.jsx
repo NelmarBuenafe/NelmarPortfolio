@@ -1,5 +1,6 @@
 import { Briefcase, Server, LayoutTemplate } from "lucide-react";
 import SectionHeader from "./SectionHeader";
+import Reveal from "./Reveal";
 
 const experiences = [
   {
@@ -38,8 +39,9 @@ function Experience() {
       />
 
       <div className="relative ml-3 border-l border-stone-300 pl-8">
-        {experiences.map(({ year, icon: Icon, title, company, description }) => (
-          <article key={title} className="relative mb-10 last:mb-0">
+        {experiences.map(({ year, icon: Icon, title, company, description }, index) => (
+          <Reveal key={title} delay={index * 70} direction="left">
+          <article className="relative mb-10 last:mb-0">
             <div className="absolute -left-[45px] top-0 flex h-8 w-8 items-center justify-center rounded-full border-4 border-stone-100 bg-stone-900 text-white">
               <Icon size={13} />
             </div>
@@ -56,6 +58,7 @@ function Experience() {
               {description}
             </p>
           </article>
+          </Reveal>
         ))}
       </div>
     </section>

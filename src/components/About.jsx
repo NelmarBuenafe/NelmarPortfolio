@@ -10,6 +10,7 @@ import GitHubContributions from "./GitHubContributions";
 import Education from "./Education";
 import Achievements from "./Achievements";
 import ProfileImage from "../assets/formal.jpg";
+import Reveal from "./Reveal";
 
 const interests = [
   {
@@ -50,6 +51,7 @@ function About() {
   return (
     <div className="space-y-20 pb-8 sm:space-y-28">
       <section aria-labelledby="about-introduction-heading">
+        <Reveal>
         <div className="grid items-center gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:gap-16">
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.22em] text-teal-700">
@@ -79,6 +81,7 @@ function About() {
             </div>
           </div>
         </div>
+        </Reveal>
       </section>
 
       <section aria-labelledby="professional-interests-heading">
@@ -103,15 +106,16 @@ function About() {
           id="approach-heading"
         />
         <div className="grid gap-5 md:grid-cols-4">
-          {approach.map(([number, title, description]) => (
+          {approach.map(([number, title, description], index) => (
+            <Reveal key={title} delay={index * 70}>
             <article
-              key={title}
               className="rounded-2xl border border-stone-200 bg-white p-5 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-teal-200 hover:shadow-md"
             >
               <span className="text-xs font-bold tracking-[0.2em] text-teal-700">{number}</span>
               <h3 className="mt-4 text-lg font-bold text-stone-950">{title}</h3>
               <p className="mt-2 text-sm leading-7 text-stone-600">{description}</p>
             </article>
+            </Reveal>
           ))}
         </div>
       </section>
@@ -159,9 +163,9 @@ function InterestCard({ interest, index }) {
   const Icon = interest.icon;
 
   return (
+    <Reveal delay={index * 70}>
     <article
-      className="rounded-2xl border border-stone-200 bg-white p-5 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-teal-200 hover:shadow-md motion-safe:animate-[serviceReveal_500ms_ease-out_both]"
-      style={{ animationDelay: `${index * 70}ms` }}
+      className="rounded-2xl border border-stone-200 bg-white p-5 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-teal-200 hover:shadow-md"
     >
       <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-stone-900 text-white">
         <Icon size={19} aria-hidden="true" />
@@ -169,16 +173,19 @@ function InterestCard({ interest, index }) {
       <h3 className="mt-4 font-bold text-stone-950">{interest.title}</h3>
       <p className="mt-2 text-sm leading-6 text-stone-600">{interest.description}</p>
     </article>
+    </Reveal>
   );
 }
 
 function SectionIntro({ label, title, description, id }) {
   return (
-    <header className="mb-8">
+    <Reveal className="mb-8">
+      <header>
       <p className="text-sm font-semibold uppercase tracking-[0.22em] text-teal-700">{label}</p>
       <h2 id={id} className="mt-3 text-3xl font-bold tracking-tight text-stone-950 sm:text-4xl">{title}</h2>
       <p className="mt-4 max-w-2xl leading-7 text-stone-600">{description}</p>
-    </header>
+      </header>
+    </Reveal>
   );
 }
 

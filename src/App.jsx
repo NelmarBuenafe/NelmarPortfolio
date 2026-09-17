@@ -1,10 +1,11 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
 import Sidebar from "./components/Sidebar";
 import Footer from "./components/Footer";
 
 function App() {
+  const { pathname } = useLocation();
+
   return (
     <div className="app-shell min-h-screen">
       <ScrollToTop />
@@ -12,7 +13,9 @@ function App() {
 
       <main className="portfolio-main min-h-screen">
         <div className="mx-auto max-w-[1440px] px-5 pb-20 pt-24 sm:px-8 sm:pt-28 lg:px-12 lg:pt-14">
-          <Outlet />
+          <div key={pathname} className="portfolio-route-enter">
+            <Outlet />
+          </div>
         </div>
       </main>
 

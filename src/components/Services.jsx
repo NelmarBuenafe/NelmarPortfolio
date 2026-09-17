@@ -2,6 +2,7 @@ import { ArrowRight, Check } from "lucide-react";
 import { Link } from "react-router-dom";
 import SectionHeader from "./SectionHeader";
 import { services } from "../data/services";
+import Reveal from "./Reveal";
 
 function Services() {
   return (
@@ -25,9 +26,9 @@ function ServiceCard({ service, index }) {
   const Icon = service.icon;
 
   return (
+    <Reveal className="h-full" delay={index * 70}>
     <article
-      className="group flex h-full flex-col rounded-2xl border border-stone-200 bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-teal-200 hover:shadow-lg motion-safe:animate-[serviceReveal_500ms_ease-out_both]"
-      style={{ animationDelay: `${index * 70}ms` }}
+      className="group flex h-full flex-col rounded-2xl border border-stone-200 bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-teal-200 hover:shadow-lg"
     >
       <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#10201f] text-white transition duration-300 group-hover:bg-teal-700 group-hover:shadow-md">
         <Icon size={22} aria-hidden="true" />
@@ -58,6 +59,7 @@ function ServiceCard({ service, index }) {
         <ArrowRight size={16} className="transition-transform group-hover/link:translate-x-1" />
       </Link>
     </article>
+    </Reveal>
   );
 }
 

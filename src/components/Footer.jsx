@@ -20,7 +20,7 @@ const socials = [
 
 function Footer() {
   return (
-    <footer className="border-t border-stone-200 bg-white">
+    <footer className="portfolio-footer-enter border-t border-stone-200 bg-white">
       <div className="mx-auto flex max-w-6xl flex-col gap-5 px-5 py-8 sm:px-8 md:flex-row md:items-center md:justify-between lg:px-12">
         <div>
           <p className="font-bold text-stone-900">Nelmar Buenafe</p>
@@ -38,7 +38,7 @@ function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={label}
-              className="rounded-lg p-2.5 text-stone-500 transition hover:bg-stone-100 hover:text-stone-900"
+              className="portfolio-social-link rounded-lg p-2.5 text-stone-500 transition hover:bg-stone-100 hover:text-stone-900"
             >
               <Icon size={18} />
             </a>
