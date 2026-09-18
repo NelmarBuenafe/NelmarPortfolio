@@ -1,4 +1,4 @@
-@import "tailwindcss";
+                                                                                                                                                                                      @import "tailwindcss";
 
 :root {
   --color-background: #f7f9f8;
@@ -268,7 +268,6 @@ main {
 .portfolio-main [class*="text-teal-"] { color: var(--color-accent) !important; }
 .portfolio-main [class*="bg-teal-600"] { background-color: var(--color-accent) !important; }
 .portfolio-main [class*="bg-stone-900"] { background-color: var(--portfolio-ink) !important; }
-.portfolio-footer-wrap { margin-left: 0; }
 .portfolio-footer-enter { animation: routeEnter 420ms ease-out both; }
 
 /* The desktop rail widens in place. Its top controls keep a fixed footprint,
@@ -347,11 +346,11 @@ main {
 
 @media (min-width: 1024px) {
   .app-shell.is-sidebar-expanded .portfolio-main,
-  .app-shell.is-sidebar-expanded .portfolio-footer-wrap { margin-left: 184px; transition: margin-left 280ms ease-out; }
+  .app-shell.is-sidebar-expanded .portfolio-main { margin-left: 184px; transition: margin-left 280ms ease-out; }
 }
 @media (min-width: 1200px) {
   .app-shell.is-sidebar-expanded .portfolio-main,
-  .app-shell.is-sidebar-expanded .portfolio-footer-wrap { margin-left: 300px; }
+  .app-shell.is-sidebar-expanded .portfolio-main { margin-left: 300px; }
 }
 
 [data-theme="dark"] { --portfolio-ink: #0a2a30; --portfolio-nav: rgba(9, 29, 41, .82); --portfolio-line: rgba(63, 219, 204, .20); --portfolio-shadow: 0 24px 65px rgba(0, 0, 0, .28); }
@@ -360,7 +359,7 @@ main {
 [data-theme="dark"] .portfolio-rail-link.is-active, [data-theme="dark"] .portfolio-rail-link:hover { color: var(--color-accent); }
 [data-theme="dark"] .portfolio-main [class~="bg-white"] { box-shadow: 0 14px 32px rgba(0, 0, 0, .18); }
 
-@media (min-width: 1024px) { .portfolio-mobile-header { display: none; } .portfolio-main, .portfolio-footer-wrap { margin-left: 116px; transition: margin-left 280ms ease-out; } }
+@media (min-width: 1024px) { .portfolio-mobile-header { display: none; } .portfolio-main { margin-left: 116px; transition: margin-left 280ms ease-out; } }
 @media (max-width: 767px) { .portfolio-hero::before { right: -42%; top: 35%; width: 110vw; } }
 @media (max-width: 639px) { .portfolio-photo-stage { min-height: 20rem; max-width: 22rem; margin-inline: auto; padding-top: 1rem; } .portfolio-hero-portrait { max-height: 27rem; } }
 @media (min-width: 640px) and (max-width: 767px) { .portfolio-mobile-header .portfolio-monogram, .portfolio-mobile-controls .appearance-trigger, .portfolio-mobile-controls .theme-toggle, .portfolio-mobile-controls .portfolio-menu-button { height: 44px; width: 44px; } }

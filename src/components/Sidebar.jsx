@@ -107,7 +107,11 @@ function Sidebar({ onDesktopExpandedChange }) {
         <div className="portfolio-mobile-controls flex shrink-0 flex-nowrap items-center gap-1.5">
           <AppearanceMenu accentOnly />
           <ThemeToggle />
-          <button type="button" onClick={() => setOpen((value) => !value)} className="portfolio-menu-button shrink-0" aria-label={open ? "Close navigation" : "Open navigation"}>{open ? <X size={20} /> : <Menu size={21} />}</button>
+          {!open && (
+            <button type="button" onClick={() => setOpen(true)} className="portfolio-menu-button shrink-0" aria-label="Open navigation">
+              <Menu size={21} />
+            </button>
+          )}
         </div>
       </header>
 

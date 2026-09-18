@@ -1,7 +1,6 @@
 import { Outlet, useLocation } from "react-router-dom";
 import { useCallback, useEffect, useState } from "react";
 import Sidebar from "./components/Sidebar";
-import Footer from "./components/Footer";
 
 function App() {
   const { pathname } = useLocation();
@@ -20,10 +19,6 @@ function App() {
           </div>
         </div>
       </main>
-
-      <div className="portfolio-footer-wrap">
-        <Footer />
-      </div>
     </div>
   );
 }
