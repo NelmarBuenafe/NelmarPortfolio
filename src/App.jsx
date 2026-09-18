@@ -1,15 +1,17 @@
 import { Outlet, useLocation } from "react-router-dom";
-import { useEffect } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Sidebar from "./components/Sidebar";
 import Footer from "./components/Footer";
 
 function App() {
   const { pathname } = useLocation();
+  const [sidebarExpanded, setSidebarExpanded] = useState(false);
+  const handleSidebarChange = useCallback((expanded) => setSidebarExpanded(expanded), []);
 
   return (
-    <div className="app-shell min-h-screen">
+    <div className={`app-shell min-h-screen ${sidebarExpanded ? "is-sidebar-expanded" : ""}`}>
       <ScrollToTop />
-      <Sidebar />
+      <Sidebar onDesktopExpandedChange={handleSidebarChange} />
 
       <main className="portfolio-main min-h-screen">
         <div className="mx-auto max-w-[1440px] px-5 pb-20 pt-24 sm:px-8 sm:pt-28 lg:px-12 lg:pt-14">

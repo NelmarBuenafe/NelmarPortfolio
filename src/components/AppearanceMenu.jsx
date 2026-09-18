@@ -109,10 +109,10 @@ function AppearanceMenu({ compact = false, accentOnly = false }) {
           else setOpen(true);
         }}
         className={`appearance-trigger flex items-center justify-center rounded-xl border border-stone-200 bg-white text-stone-700 shadow-sm transition hover:border-teal-300 hover:bg-teal-50 hover:text-teal-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 focus-visible:ring-offset-2 ${compact ? "h-10 w-10" : "h-10 w-10"}`}
-        aria-label={accentOnly ? "Choose accent color" : "Appearance settings"}
+        aria-label={accentOnly ? "Change accent color" : "Appearance settings"}
         aria-expanded={open}
         aria-controls={panelId}
-        title={accentOnly ? "Choose accent color" : "Appearance settings"}
+        title={accentOnly ? "Change accent color" : "Appearance settings"}
       >
         <Palette size={19} aria-hidden="true" />
       </button>
@@ -193,7 +193,7 @@ export function ThemeToggle() {
       type="button"
       onClick={() => setTheme(nextTheme)}
       className="theme-toggle inline-flex items-center justify-center rounded-xl border border-stone-200 bg-white text-stone-700 shadow-sm transition hover:border-teal-300 hover:bg-teal-50 hover:text-teal-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 focus-visible:ring-offset-2"
-      aria-label={`Switch to ${nextTheme} mode`}
+      aria-label={`Toggle light and dark mode (switch to ${nextTheme})`}
       title={`Switch to ${nextTheme} mode`}
     >
       <Icon size={19} aria-hidden="true" />
