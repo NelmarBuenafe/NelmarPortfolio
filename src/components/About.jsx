@@ -1,14 +1,7 @@
-import {
-  Code2,
-  Lightbulb,
-  MessageCircle,
-  MousePointer2,
-  RefreshCw,
-  UsersRound,
-} from "lucide-react";
+import { Code2, Lightbulb, MessageCircle, MousePointer2, RefreshCw, UsersRound } from "lucide-react";
+import AchievementHighlights from "./AchievementHighlights";
 import GitHubContributions from "./GitHubContributions";
 import Education from "./Education";
-import Achievements from "./Achievements";
 import ProfileImage from "../assets/formal.jpg";
 import Reveal from "./Reveal";
 
@@ -120,8 +113,6 @@ function About() {
         </div>
       </section>
 
-      <GitHubContributions />
-
       <section id="education" aria-labelledby="education-heading" className="scroll-mt-24">
         <SectionIntro
           label="Academic Background"
@@ -134,13 +125,15 @@ function About() {
 
       <section id="achievements" aria-labelledby="achievements-heading" className="scroll-mt-24">
         <SectionIntro
-          label="Milestones"
-          title="Achievements"
-          description="Selected academic milestones and areas of continuous growth."
+          label="Highlights"
+          title="Achievement Highlights"
+          description="A few meaningful milestones from my involvement, competition, and continuous learning."
           id="achievements-heading"
         />
-        <Achievements embedded />
+        <AchievementHighlights />
       </section>
+
+      <GitHubContributions />
 
       <section className="rounded-[2rem] bg-[#10201f] p-7 text-white shadow-xl shadow-teal-950/10 sm:flex sm:items-center sm:justify-between sm:gap-8 sm:p-10">
         <div>
