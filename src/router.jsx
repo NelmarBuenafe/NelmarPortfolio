@@ -4,7 +4,6 @@ import App from "./App";
 import Home from "./components/Home";
 import About from "./components/About";
 import Experience from "./components/Experience";
-import Skills from "./components/Skills";
 import Projects from "./components/Projects";
 import Contact from "./components/Contact";
 import Services from "./components/Services";
@@ -19,7 +18,7 @@ const router = createBrowserRouter([
       { path: "about", element: <About /> },
       { path: "achievements", element: <Navigate to="/about#achievements" replace /> },
       { path: "experience", element: <Experience /> },
-      { path: "skills", element: <Skills /> },
+      { path: "skills", element: <Navigate to="/about#skills" replace /> },
       { path: "projects", element: <Projects /> },
       { path: "education", element: <Navigate to="/about#education" replace /> },
       { path: "contact", element: <Contact /> },

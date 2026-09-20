@@ -17,6 +17,12 @@ const education = [
     description:
       "Completed senior high school education before pursuing Information Technology.",
   },
+  {
+    year: "Completed",
+    degree: "Elementary School",
+    school: "Alfredo Sanson Memorial Elementary School",
+    description: "Completed elementary education.",
+  },
 ];
 
 function Education({ embedded = false }) {

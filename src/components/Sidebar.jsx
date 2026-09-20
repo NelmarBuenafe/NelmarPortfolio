@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import {
-  ArrowRight, ChevronLeft, ChevronsRight, House, UserRound, BriefcaseBusiness, Code2, FolderGit2, Sparkles, Mail, Menu, X,
+  ArrowRight, ChevronLeft, ChevronsRight, House, UserRound, BriefcaseBusiness, FolderGit2, Sparkles, Mail, Menu, X,
 } from "lucide-react";
 import { FaFacebookF, FaGithub, FaLinkedin } from "react-icons/fa";
 import AppearanceMenu, { ThemeToggle } from "./AppearanceMenu";
@@ -10,7 +10,6 @@ const menu = [
   { path: "/", label: "Home", icon: House, end: true },
   { path: "/about", label: "About Me", icon: UserRound },
   { path: "/experience", label: "Experience", icon: BriefcaseBusiness },
-  { path: "/skills", label: "Skills", icon: Code2 },
   { path: "/projects", label: "Projects", icon: FolderGit2 },
   { path: "/services", label: "Services", icon: Sparkles },
   { path: "/contact", label: "Contact", icon: Mail },

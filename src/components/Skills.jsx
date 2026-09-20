@@ -1,59 +1,11 @@
-import {
-  Code2,
-  Database,
-  Globe,
-  Terminal,
-  Shield,
-  Wrench,
-} from "lucide-react";
-import SectionHeader from "./SectionHeader";
 import Reveal from "./Reveal";
+import { skillGroups } from "../data/skills";
 
-const skillGroups = [
-  {
-    icon: Code2,
-    title: "Design Foundations",
-    skills: ["UI/UX Design", "Wireframing", "Visual Hierarchy", "Canva"],
-  },
-  {
-    icon: Globe,
-    title: "Interface Skills",
-    skills: ["HTML", "CSS", "Responsive Layouts", "Design Systems"],
-  },
-  {
-    icon: Terminal,
-    title: "Problem Solving",
-    skills: ["Research", "User Flows", "Critical Thinking", "Iteration"],
-  },
-  {
-    icon: Database,
-    title: "Learning Tools",
-    skills: ["Canva", "VS Code", "Git"],
-  },
-  {
-    icon: Shield,
-    title: "Development Basics",
-    skills: ["JavaScript", "React", "Tailwind CSS", "GitHub"],
-  },
-  {
-    icon: Wrench,
-    title: "Growth Mindset",
-    skills: ["Continuous Learning", "Feedback", "Teamwork", "Communication"],
-  },
-];
-
-function Skills() {
+function SkillsContent() {
   return (
-    <section>
-      <SectionHeader
-        label="Technical"
-        title="Skills"
-        description="Technologies and tools I have used across academic, personal, and development projects."
-      />
-
-      <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-        {skillGroups.map(({ icon: Icon, title, skills }, index) => (
-          <Reveal key={title} delay={index * 70}>
+    <div className="grid gap-5 lg:grid-cols-2">
+      {skillGroups.map(({ icon: Icon, title, skills }, index) => (
+        <Reveal key={title} delay={index * 70}>
           <article
             className="rounded-2xl border border-stone-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
           >
@@ -75,11 +27,10 @@ function Skills() {
               ))}
             </div>
           </article>
-          </Reveal>
-        ))}
-      </div>
-    </section>
+        </Reveal>
+      ))}
+    </div>
   );
 }
 
-export default Skills;
+export default SkillsContent;

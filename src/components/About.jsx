@@ -1,44 +1,10 @@
-import { Code2, Lightbulb, MessageCircle, MousePointer2, RefreshCw, UsersRound } from "lucide-react";
+import { MessageCircle } from "lucide-react";
 import AchievementHighlights from "./AchievementHighlights";
 import GitHubContributions from "./GitHubContributions";
 import Education from "./Education";
+import SkillsContent from "./Skills";
 import ProfileImage from "../assets/formal.jpg";
 import Reveal from "./Reveal";
-
-const interests = [
-  {
-    icon: MousePointer2,
-    title: "UI/UX Design",
-    description: "Creating interfaces that feel clear, useful, and easy to navigate.",
-  },
-  {
-    icon: Code2,
-    title: "Front-End Development",
-    description: "Turning thoughtful layouts into responsive React experiences.",
-  },
-  {
-    icon: Lightbulb,
-    title: "Problem Solving",
-    description: "Breaking complex challenges into practical and understandable steps.",
-  },
-  {
-    icon: RefreshCw,
-    title: "Continuous Learning",
-    description: "Building skills through projects, feedback, and hands-on practice.",
-  },
-  {
-    icon: UsersRound,
-    title: "Team Collaboration",
-    description: "Communicating ideas clearly and contributing thoughtfully to shared work.",
-  },
-];
-
-const approach = [
-  ["01", "Understand", "Identify the users, goals, and main problem."],
-  ["02", "Plan", "Organize the content, user flows, and requirements."],
-  ["03", "Design", "Create wireframes and clear visual layouts."],
-  ["04", "Improve", "Review feedback, test the interface, and refine the result."],
-];
 
 function About() {
   return (
@@ -77,40 +43,14 @@ function About() {
         </Reveal>
       </section>
 
-      <section aria-labelledby="professional-interests-heading">
+      <section id="skills" aria-labelledby="skills-heading" className="scroll-mt-24">
         <SectionIntro
-          label="Professional Interests"
-          title="What I am growing into."
-          description="Areas that guide the projects I choose and the skills I continue to develop."
-          id="professional-interests-heading"
+          label="Technical"
+          title="Skills & Tools"
+          description="Technologies and tools I use for design, development, and academic projects."
+          id="skills-heading"
         />
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
-          {interests.map((interest, index) => (
-            <InterestCard key={interest.title} interest={interest} index={index} />
-          ))}
-        </div>
-      </section>
-
-      <section aria-labelledby="approach-heading">
-        <SectionIntro
-          label="Design and Development Approach"
-          title="A simple process for useful work."
-          description="I use a focused, iterative process to keep decisions connected to people and their needs."
-          id="approach-heading"
-        />
-        <div className="grid gap-5 md:grid-cols-4">
-          {approach.map(([number, title, description], index) => (
-            <Reveal key={title} delay={index * 70}>
-            <article
-              className="rounded-2xl border border-stone-200 bg-white p-5 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-teal-200 hover:shadow-md"
-            >
-              <span className="text-xs font-bold tracking-[0.2em] text-teal-700">{number}</span>
-              <h3 className="mt-4 text-lg font-bold text-stone-950">{title}</h3>
-              <p className="mt-2 text-sm leading-7 text-stone-600">{description}</p>
-            </article>
-            </Reveal>
-          ))}
-        </div>
+        <SkillsContent />
       </section>
 
       <section id="education" aria-labelledby="education-heading" className="scroll-mt-24">
@@ -149,24 +89,6 @@ function About() {
         </div>
       </section>
     </div>
-  );
-}
-
-function InterestCard({ interest, index }) {
-  const Icon = interest.icon;
-
-  return (
-    <Reveal delay={index * 70}>
-    <article
-      className="rounded-2xl border border-stone-200 bg-white p-5 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-teal-200 hover:shadow-md"
-    >
-      <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-stone-900 text-white">
-        <Icon size={19} aria-hidden="true" />
-      </div>
-      <h3 className="mt-4 font-bold text-stone-950">{interest.title}</h3>
-      <p className="mt-2 text-sm leading-6 text-stone-600">{interest.description}</p>
-    </article>
-    </Reveal>
   );
 }
 
