@@ -3,12 +3,14 @@ import { ExternalLink } from "lucide-react";
 import { GitHubCalendar } from "react-github-calendar";
 import { FaGithub } from "react-icons/fa";
 import Reveal from "./Reveal";
+import { useAppearance } from "../theme/AppearanceProvider";
 
 const GITHUB_USERNAME = "NelmarBuenafe";
 const GITHUB_PROFILE_URL = "https://github.com/NelmarBuenafe";
 const GITHUB_EARLIEST_YEAR = 2022;
 
 function GitHubContributions() {
+  const { resolvedTheme } = useAppearance();
   const currentYear = new Date().getFullYear();
   const [selectedYear, setSelectedYear] = useState(currentYear);
   const [calendarKey, setCalendarKey] = useState(0);
@@ -21,7 +23,7 @@ function GitHubContributions() {
     <Reveal>
       <section
         aria-labelledby="about-github-contributions-heading"
-        className="mt-10 rounded-[2rem] border border-stone-200 bg-white p-7 shadow-sm sm:p-10"
+        className="rounded-[2rem] border border-stone-200 bg-white p-6 shadow-sm sm:p-8"
       >
         <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between">
           <div className="flex items-start gap-3">
@@ -75,17 +77,17 @@ function GitHubContributions() {
           </div>
         </div>
 
-        <div className="mt-8 overflow-x-auto rounded-2xl border border-stone-100 bg-stone-50/70 p-4 pb-5 sm:p-6">
+        <div className="mt-8 overflow-x-auto rounded-2xl border border-teal-100 bg-stone-50/70 p-4 pb-5 sm:p-6">
           <div className="min-w-[720px]">
             <GitHubCalendar
               key={`${selectedYear}-${calendarKey}`}
               username={GITHUB_USERNAME}
               year={selectedYear}
               theme={{
-                light: ["#e8f2ef", "#bfe3d7", "#73c9b2", "#159a82", "#0b5c4d"],
-                dark: ["#243b38", "#1d6b5c", "#159a82", "#43bda3", "#a6ead9"],
+                light: ["#E4EFEC", "#B7DED5", "#70C6B4", "#27A88D", "#087763"],
+                dark: ["#122824", "#1B473E", "#23705F", "#1FA185", "#31D5AF"],
               }}
-              colorScheme="light"
+              colorScheme={resolvedTheme}
               blockSize={13}
               blockMargin={4}
               fontSize={12}

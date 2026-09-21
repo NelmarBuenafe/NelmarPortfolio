@@ -3,24 +3,24 @@ import { skillGroups } from "../data/skills";
 
 function SkillsContent() {
   return (
-    <div className="grid gap-5 lg:grid-cols-2">
+    <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
       {skillGroups.map(({ icon: Icon, title, skills }, index) => (
         <Reveal key={title} delay={index * 70}>
           <article
-            className="rounded-2xl border border-stone-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
+            className="h-full rounded-2xl border border-stone-200 bg-white p-5 shadow-sm"
           >
-            <div className="mb-5 flex items-center gap-3">
-              <div className="rounded-lg bg-stone-100 p-3">
-                <Icon size={20} />
+            <div className="mb-4 flex items-center gap-3">
+              <div className="rounded-xl bg-teal-50 p-2.5 text-teal-700">
+                <Icon size={19} aria-hidden="true" />
               </div>
-              <h3 className="font-bold">{title}</h3>
+              <h3 className="text-sm font-bold text-stone-950">{title}</h3>
             </div>
 
             <div className="flex flex-wrap gap-2">
               {skills.map((skill) => (
                 <span
                   key={skill}
-                  className="portfolio-tech-tag rounded-full border border-stone-200 bg-stone-50 px-3 py-1.5 text-xs font-medium text-stone-600"
+                  className="portfolio-tech-tag rounded-full border border-stone-200 bg-stone-50 px-2.5 py-1.5 text-xs font-medium text-stone-600"
                 >
                   {skill}
                 </span>

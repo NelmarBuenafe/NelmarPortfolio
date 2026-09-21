@@ -1,34 +1,33 @@
-import { Code2, Database, Globe, Shield, Terminal, Wrench } from "lucide-react";
+import { Code2, GitBranch, Lightbulb, MessageCircle, Palette, ScanSearch, UsersRound } from "lucide-react";
 
 export const skillGroups = [
   {
     icon: Code2,
-    title: "Design Foundations",
-    skills: ["UI/UX Design", "Wireframing", "Visual Hierarchy", "Canva"],
+    title: "Front-End Development",
+    skills: ["HTML", "CSS", "JavaScript", "React", "Tailwind CSS"],
   },
   {
-    icon: Globe,
-    title: "Interface Skills",
-    skills: ["HTML", "CSS", "Responsive Layouts", "Design Systems"],
+    icon: Palette,
+    title: "UI/UX & Design",
+    skills: ["UI/UX Design", "Wireframing", "Visual Hierarchy", "Design Systems", "Responsive Layouts", "Canva"],
   },
   {
-    icon: Terminal,
-    title: "Problem Solving",
-    skills: ["Research", "User Flows", "Critical Thinking", "Iteration"],
+    icon: GitBranch,
+    title: "Development Tools",
+    skills: ["VS Code", "Git", "GitHub"],
   },
   {
-    icon: Database,
-    title: "Learning Tools",
-    skills: ["Canva", "VS Code", "Git"],
+    icon: ScanSearch,
+    title: "Research & Iteration",
+    skills: ["Research", "User Flows", "Iteration"],
   },
-  {
-    icon: Shield,
-    title: "Development Basics",
-    skills: ["JavaScript", "React", "Tailwind CSS", "GitHub"],
-  },
-  {
-    icon: Wrench,
-    title: "Growth Mindset",
-    skills: ["Continuous Learning", "Feedback", "Teamwork", "Communication"],
-  },
+];
+
+export const professionalStrengths = [
+  { icon: MessageCircle, title: "Communication", description: "I value clear and open communication when working with others." },
+  { icon: UsersRound, title: "Teamwork", description: "I enjoy collaborating, learning, and contributing to shared goals." },
+  { icon: Lightbulb, title: "Problem Solving", description: "I approach challenges with a practical and thoughtful mindset." },
+  { icon: ScanSearch, title: "Critical Thinking", description: "I consider user needs and details before shaping a solution." },
+  { icon: Palette, title: "Design Thinking", description: "I use structure and visual hierarchy to keep interfaces clear." },
+  { icon: GitBranch, title: "Continuous Learning", description: "I grow through feedback, hands-on practice, and iteration." },
 ];
