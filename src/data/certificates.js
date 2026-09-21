@@ -15,7 +15,7 @@ export const certificates = [
   },
   {
     id: "basic-javascript",
-    year: "2026",
+    year: "2024",
     title: "Basic JavaScript",
     description:
       "Completed a foundational JavaScript certificate and strengthened my understanding of core programming concepts for web development.",
@@ -23,7 +23,7 @@ export const certificates = [
   },
   {
     id: "cite-week-ui-ux-competition-champion",
-    year: "2026",
+    year: "2025",
     title: "CITE Week UI/UX Competition Champion",
     description:
       "Earned this web design certificate during CITE Week and contributed to our team's championship win in the UI/UX competition.",

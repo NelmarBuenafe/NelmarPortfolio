@@ -8,14 +8,14 @@ import { certificates } from "../data/certificates";
 function TrainingCertifications() {
   const [selectedCertificate, setSelectedCertificate] = useState(null);
   const triggerRef = useRef(null);
-  const certificatesByYear = useMemo(
-    () =>
-      certificates.reduce((groups, certificate) => {
-        (groups[certificate.year] ??= []).push(certificate);
-        return groups;
-      }, {}),
-    [],
-  );
+  const certificatesByYear = useMemo(() => {
+    const groups = certificates.reduce((yearGroups, certificate) => {
+      (yearGroups[certificate.year] ??= []).push(certificate);
+      return yearGroups;
+    }, {});
+
+    return Object.entries(groups).sort(([firstYear], [secondYear]) => Number(secondYear) - Number(firstYear));
+  }, []);
 
   const closeModal = useCallback(() => {
     setSelectedCertificate(null);
@@ -56,7 +56,7 @@ function TrainingCertifications() {
       />
 
       <div className="relative ml-3 border-l border-stone-300 pl-7 sm:pl-9">
-        {Object.entries(certificatesByYear).map(([year, yearCertificates]) => (
+        {certificatesByYear.map(([year, yearCertificates]) => (
           <div key={year} className="relative pb-8 last:pb-0">
             <div className="absolute -left-[39px] top-0 flex h-7 w-7 items-center justify-center rounded-full border-4 border-stone-100 bg-stone-900 text-white sm:-left-[47px]">
               <Award size={13} aria-hidden="true" />
@@ -81,8 +81,7 @@ function TrainingCertifications() {
                     </button>
 
                     <div className="p-5 lg:p-7">
-                      <span className="text-xs font-semibold text-stone-400">{certificate.year}</span>
-                      <h3 className="mt-2 text-xl font-bold text-stone-950">{certificate.title}</h3>
+                      <h3 className="text-xl font-bold text-stone-950">{certificate.title}</h3>
                       <p className="mt-4 max-w-2xl text-sm leading-7 text-stone-600">
                         {certificate.description}
                       </p>
