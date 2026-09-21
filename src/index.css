@@ -254,11 +254,11 @@ main {
 .portfolio-social-link:active, .portfolio-drawer-connect a:active { transform: scale(.96); }
 @keyframes drawerItemIn { from { opacity: 0; transform: translateX(-8px); } to { opacity: 1; transform: translateX(0); } }
 
-.portfolio-hero::before { content: ""; position: absolute; z-index: -1; right: 3%; top: 10%; width: min(39vw, 500px); aspect-ratio: 1; border: 1px solid color-mix(in srgb, var(--color-accent) 24%, transparent); border-radius: 50%; background: radial-gradient(circle, color-mix(in srgb, var(--color-accent) 13%, transparent), transparent 65%); }
 .portfolio-hero::after { content: ""; position: absolute; z-index: -1; left: -12%; bottom: -12%; width: 42%; height: 45%; border-radius: 50%; background: radial-gradient(ellipse, color-mix(in srgb, var(--color-accent) 9%, transparent), transparent 67%); filter: blur(10px); }
 .portfolio-hero-title { text-wrap: balance; }
 .portfolio-hero-title > span { color: var(--color-accent) !important; text-shadow: 0 7px 24px color-mix(in srgb, var(--color-accent) 22%, transparent); }
 .portfolio-photo-stage { position: relative; display: flex; min-height: 25rem; align-items: end; justify-content: center; padding: 1.5rem 1rem 0; }
+.portfolio-photo-stage::before { content: ""; position: absolute; z-index: 0; top: 46%; left: 50%; width: min(108%, 30rem); aspect-ratio: 1; border: 1px solid color-mix(in srgb, var(--color-accent) 24%, transparent); border-radius: 50%; background: radial-gradient(circle, color-mix(in srgb, var(--color-accent) 13%, transparent), transparent 65%); transform: translate(-50%, -50%); }
 .portfolio-hero-portrait { position: relative; z-index: 1; display: block; width: min(100%, 29rem); max-height: 34rem; object-fit: contain; object-position: bottom center; filter: drop-shadow(0 20px 20px color-mix(in srgb, #071917 34%, transparent)); }
 
 /* Give all route content the same polished card rhythm without changing its data or interactions. */
@@ -360,8 +360,8 @@ main {
 [data-theme="dark"] .portfolio-main [class~="bg-white"] { box-shadow: 0 14px 32px rgba(0, 0, 0, .18); }
 
 @media (min-width: 1024px) { .portfolio-mobile-header { display: none; } .portfolio-main { margin-left: 116px; transition: margin-left 280ms ease-out; } }
-@media (max-width: 767px) { .portfolio-hero::before { right: -42%; top: 35%; width: 110vw; } }
-@media (max-width: 639px) { .portfolio-photo-stage { min-height: 20rem; max-width: 22rem; margin-inline: auto; padding-top: 1rem; } .portfolio-hero-portrait { max-height: 27rem; } }
+@media (max-width: 767px) { .portfolio-photo-stage::before { top: 46%; width: min(92%, 19rem); } }
+@media (max-width: 639px) { .portfolio-photo-stage { min-height: 20rem; max-width: 22rem; margin-inline: auto; padding-top: 1rem; } .portfolio-photo-stage::before { width: min(92%, 18rem); } .portfolio-hero-portrait { max-height: 27rem; } }
 @media (min-width: 640px) and (max-width: 767px) { .portfolio-mobile-header .portfolio-monogram, .portfolio-mobile-controls .appearance-trigger, .portfolio-mobile-controls .theme-toggle, .portfolio-mobile-controls .portfolio-menu-button { height: 44px; width: 44px; } }
 @media (max-width: 359px) { .portfolio-mobile-header { gap: 6px; padding-inline: 8px; } .portfolio-mobile-controls { gap: 4px; } .portfolio-mobile-header .portfolio-monogram { height: 38px; width: 38px; } .portfolio-mobile-brand { gap: 7px; } .portfolio-mobile-brand strong { font-size: 12px; } .portfolio-mobile-brand small { font-size: 10px; } .portfolio-hire-button { padding-inline: 11px; } }
 
