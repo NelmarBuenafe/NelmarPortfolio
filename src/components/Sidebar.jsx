@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { NavLink } from "react-router-dom";
 import {
   ArrowRight, ChevronLeft, ChevronsRight, House, UserRound, BriefcaseBusiness, FolderGit2, Sparkles, Mail, Menu, X,
@@ -66,6 +66,7 @@ function DesktopSocialLinks({ iconOnly = false, tabIndex }) {
 
 function Sidebar({ onDesktopExpandedChange }) {
   const [open, setOpen] = useState(false);
+  const closeButtonRef = useRef(null);
   const [expanded, setExpanded] = useState(() => {
     try {
       return window.localStorage.getItem(DESKTOP_SIDEBAR_KEY) === "true";
@@ -75,12 +76,17 @@ function Sidebar({ onDesktopExpandedChange }) {
   });
 
   useEffect(() => {
+    if (!open) return undefined;
+
+    const originalOverflow = document.body.style.overflow;
     const onKeyDown = (event) => event.key === "Escape" && setOpen(false);
     document.addEventListener("keydown", onKeyDown);
-    document.body.style.overflow = open ? "hidden" : "";
+    document.body.style.overflow = "hidden";
+    closeButtonRef.current?.focus();
+
     return () => {
       document.removeEventListener("keydown", onKeyDown);
-      document.body.style.overflow = "";
+      document.body.style.overflow = originalOverflow;
     };
   }, [open]);
 
@@ -95,35 +101,46 @@ function Sidebar({ onDesktopExpandedChange }) {
 
   return (
     <>
-      <header className="portfolio-mobile-header flex w-full flex-nowrap items-center justify-between gap-2 px-3 py-2 lg:hidden">
-        <NavLink to="/" className="flex min-w-0 flex-1 items-center gap-2" onClick={() => setOpen(false)}>
-          <span className="portfolio-monogram shrink-0">NB</span>
-          <span className="min-w-0">
-            <strong className="block text-sm leading-tight text-stone-950">Nelmar Buenafe</strong>
-            <small className="mt-0.5 block text-[11px] leading-tight text-stone-500">BS Information Technology</small>
-          </span>
-        </NavLink>
-        <div className="portfolio-mobile-controls flex shrink-0 flex-nowrap items-center gap-1.5">
-          <AppearanceMenu accentOnly />
-          <ThemeToggle />
-          {!open && (
-            <button type="button" onClick={() => setOpen(true)} className="portfolio-menu-button shrink-0" aria-label="Open navigation">
+      {!open && (
+        <header className="portfolio-mobile-header flex w-full flex-nowrap items-center justify-between gap-2 px-3 py-2 lg:hidden">
+          <NavLink to="/" className="flex min-w-0 flex-1 items-center gap-2">
+            <span className="portfolio-monogram shrink-0">NB</span>
+            <span className="min-w-0">
+              <strong className="block text-sm leading-tight text-stone-950">Nelmar Buenafe</strong>
+              <small className="mt-0.5 block text-[11px] leading-tight text-stone-500">BS Information Technology</small>
+            </span>
+          </NavLink>
+          <div className="portfolio-mobile-controls flex shrink-0 flex-nowrap items-center gap-1.5">
+            <AppearanceMenu accentOnly />
+            <ThemeToggle />
+            <button
+              type="button"
+              onClick={() => setOpen(true)}
+              className="portfolio-menu-button shrink-0"
+              aria-label="Open navigation menu"
+              aria-expanded={false}
+              aria-controls="mobile-navigation"
+            >
               <Menu size={21} />
             </button>
-          )}
-        </div>
-      </header>
+          </div>
+        </header>
+      )}
 
-      <div className={`fixed inset-0 z-40 bg-slate-950/25 backdrop-blur-sm transition lg:hidden ${open ? "opacity-100" : "pointer-events-none opacity-0"}`} onClick={() => setOpen(false)} aria-hidden="true" />
-      <aside className={`portfolio-mobile-drawer lg:hidden ${open ? "translate-x-0" : "-translate-x-full"}`}>
-        <div className="mb-8 flex items-start justify-between"><div className="flex items-center gap-3"><span className="portfolio-monogram">NB</span><span><strong className="block text-sm leading-tight text-stone-950">Nelmar Buenafe</strong><small className="text-xs text-stone-500">BS Information Technology</small></span></div><button type="button" onClick={() => setOpen(false)} className="portfolio-menu-button" aria-label="Close navigation"><X size={20} /></button></div>
+      {open && (
+        <>
+          <div className="fixed inset-0 z-40 bg-slate-950/40 backdrop-blur-sm lg:hidden" onClick={() => setOpen(false)} aria-hidden="true" />
+          <aside id="mobile-navigation" className="portfolio-mobile-drawer translate-x-0 lg:hidden" aria-label="Mobile navigation">
+            <div className="mb-8 flex items-start justify-between"><div className="flex items-center gap-3"><span className="portfolio-monogram">NB</span><span><strong className="block text-sm leading-tight text-stone-950">Nelmar Buenafe</strong><small className="text-xs text-stone-500">BS Information Technology</small></span></div><button ref={closeButtonRef} type="button" onClick={() => setOpen(false)} className="portfolio-menu-button" aria-label="Close navigation menu"><X size={20} /></button></div>
         <NavItems mobile onNavigate={() => setOpen(false)} />
         <div className="portfolio-drawer-actions">
           <div className="flex shrink-0 items-center gap-2"><AppearanceMenu accentOnly /><ThemeToggle /></div>
           <NavLink to="/contact" onClick={() => setOpen(false)} className="portfolio-hire-button">Hire Me <ArrowRight size={16} /></NavLink>
         </div>
         <div className="portfolio-drawer-connect"><p>Connect</p><div><a href="https://www.facebook.com/nelmar.buenafe" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><FaFacebookF /></a><a href="mailto:buenafenelmar7@gmail.com" aria-label="Email"><Mail size={18} /></a><a href="https://github.com/NelmarBuenafe" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><FaGithub /></a><a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><FaLinkedin /></a></div></div>
-      </aside>
+          </aside>
+        </>
+      )}
 
       <aside className={`portfolio-rail hidden lg:flex ${expanded ? "is-expanded" : ""}`} aria-label="Portfolio navigation">
         <header className="portfolio-sidebar-top">

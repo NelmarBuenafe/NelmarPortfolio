@@ -94,9 +94,9 @@ function Contact() {
         description="Interested in working together? Select a service and tell me about your project. I’ll respond as soon as possible."
       />
 
-      <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
-        <Reveal className="h-full" direction="left">
-        <div className="h-full rounded-3xl bg-[#10201f] p-8 text-white shadow-xl shadow-teal-950/10 sm:p-10">
+      <div className="grid items-start gap-8 lg:grid-cols-[0.8fr_1.2fr]">
+        <Reveal className="self-start" direction="left">
+        <div className="h-auto self-start rounded-3xl bg-[#10201f] p-8 text-white shadow-xl shadow-teal-950/10 sm:p-10">
           <div className="inline-flex items-center gap-2 rounded-full border border-teal-400/30 bg-teal-400/10 px-3 py-1.5 text-xs font-semibold text-teal-300">
             <CircleCheck size={14} aria-hidden="true" />
             Open to internships and projects
@@ -224,7 +224,7 @@ function ContactCard({ icon: Icon, label, value, href }) {
       rel={href.startsWith("mailto:") ? undefined : "noopener noreferrer"}
       className="group flex items-center gap-4 rounded-xl border border-stone-200 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-600 focus-visible:ring-offset-2"
     >
-      <div className="rounded-lg bg-stone-100 p-3 text-stone-900 transition group-hover:bg-stone-900 group-hover:text-white">
+      <div className="contact-method-icon inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border transition">
         <Icon size={20} aria-hidden="true" />
       </div>
       <div className="min-w-0">
