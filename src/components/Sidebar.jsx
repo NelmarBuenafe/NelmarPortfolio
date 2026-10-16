@@ -19,7 +19,7 @@ const socialLinks = [
   { label: "Facebook", href: "https://www.facebook.com/nelmar.buenafe", Icon: FaFacebookF, external: true },
   { label: "Email", href: "mailto:buenafenelmar7@gmail.com", Icon: Mail },
   { label: "GitHub", href: "https://github.com/NelmarBuenafe", Icon: FaGithub, external: true },
-  { label: "LinkedIn", href: "https://www.linkedin.com/", Icon: FaLinkedin, external: true },
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/nelmar-buenafe-14468829b", Icon: FaLinkedin, external: true },
 ];
 
 const DESKTOP_SIDEBAR_KEY = "portfolio-sidebar-expanded";
@@ -137,7 +137,7 @@ function Sidebar({ onDesktopExpandedChange }) {
           <div className="flex shrink-0 items-center gap-2"><AppearanceMenu accentOnly /><ThemeToggle /></div>
           <NavLink to="/contact" onClick={() => setOpen(false)} className="portfolio-hire-button">Hire Me <ArrowRight size={16} /></NavLink>
         </div>
-        <div className="portfolio-drawer-connect"><p>Connect</p><div><a href="https://www.facebook.com/nelmar.buenafe" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><FaFacebookF /></a><a href="mailto:buenafenelmar7@gmail.com" aria-label="Email"><Mail size={18} /></a><a href="https://github.com/NelmarBuenafe" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><FaGithub /></a><a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><FaLinkedin /></a></div></div>
+        <div className="portfolio-drawer-connect"><p>Connect</p><div><a href="https://www.facebook.com/nelmar.buenafe" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><FaFacebookF /></a><a href="mailto:buenafenelmar7@gmail.com" aria-label="Email"><Mail size={18} /></a><a href="https://github.com/NelmarBuenafe" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><FaGithub /></a><a href="https://www.linkedin.com/in/nelmar-buenafe-14468829b" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><FaLinkedin /></a></div></div>
           </aside>
         </>
       )}

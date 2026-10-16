@@ -3,12 +3,12 @@ import { FaFacebook, FaGithub, FaLinkedin } from "react-icons/fa";
 const socials = [
   {
     label: "GitHub",
-    href: "https://github.com/",
+    href: "https://github.com/NelmarBuenafe",
     icon: FaGithub,
   },
   {
     label: "LinkedIn",
-    href: "https://www.linkedin.com/",
+    href: "https://www.linkedin.com/in/nelmar-buenafe-14468829b",
     icon: FaLinkedin,
   },
   {

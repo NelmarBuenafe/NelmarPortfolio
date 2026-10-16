@@ -25,8 +25,8 @@ const contactLinks = [
   {
     icon: FaLinkedin,
     label: "LinkedIn",
-    value: "linkedin.com/in/yourusername",
-    href: "https://www.linkedin.com/",
+    value: "linkedin.com/in/nelmar-buenafe-14468829b",
+    href: "https://www.linkedin.com/in/nelmar-buenafe-14468829b",
   },
 ];
 
