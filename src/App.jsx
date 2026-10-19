@@ -2,10 +2,32 @@ import { Outlet, useLocation } from "react-router-dom";
 import { useCallback, useEffect, useState } from "react";
 import Sidebar from "./components/Sidebar";
 
+const routeTitles = {
+  "/": "Nelmar Buenafe | UI/UX Designer & Front-End Developer",
+  "/about": "About | Nelmar Buenafe",
+  "/projects": "Projects | Nelmar Buenafe",
+  "/experience": "Experience & Involvements | Nelmar Buenafe",
+  "/services": "Services | Nelmar Buenafe",
+  "/contact": "Contact | Nelmar Buenafe",
+};
+
+function getPageTitle(pathname, hash) {
+  if (pathname === "/about" && hash) {
+    const sectionName = hash.replace("#", "");
+    const formatted = sectionName.charAt(0).toUpperCase() + sectionName.slice(1);
+    return `${formatted} · About | Nelmar Buenafe`;
+  }
+  return routeTitles[pathname] || "Nelmar Buenafe | UI/UX Designer & Front-End Developer";
+}
+
 function App() {
-  const { pathname } = useLocation();
+  const { pathname, hash } = useLocation();
   const [sidebarExpanded, setSidebarExpanded] = useState(false);
   const handleSidebarChange = useCallback((expanded) => setSidebarExpanded(expanded), []);
+
+  useEffect(() => {
+    document.title = getPageTitle(pathname, hash);
+  }, [pathname, hash]);
 
   return (
     <div className={`app-shell min-h-screen ${sidebarExpanded ? "is-sidebar-expanded" : ""}`}>
