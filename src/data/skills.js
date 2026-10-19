@@ -24,10 +24,10 @@ export const skillGroups = [
 ];
 
 export const professionalStrengths = [
-  { icon: MessageCircle, title: "Communication", description: "I value clear and open communication when working with others." },
-  { icon: UsersRound, title: "Teamwork", description: "I enjoy collaborating, learning, and contributing to shared goals." },
-  { icon: Lightbulb, title: "Problem Solving", description: "I approach challenges with a practical and thoughtful mindset." },
-  { icon: ScanSearch, title: "Critical Thinking", description: "I consider user needs and details before shaping a solution." },
-  { icon: Palette, title: "Design Thinking", description: "I use structure and visual hierarchy to keep interfaces clear." },
-  { icon: GitBranch, title: "Continuous Learning", description: "I grow through feedback, hands-on practice, and iteration." },
+  { icon: MessageCircle, title: "Communication", tag: "Clarity & Feedback", description: "I value clear and open communication when working with others." },
+  { icon: UsersRound, title: "Teamwork", tag: "Collaboration", description: "I enjoy collaborating, learning, and contributing to shared goals." },
+  { icon: Lightbulb, title: "Problem Solving", tag: "Analytical Mindset", description: "I approach challenges with a practical and thoughtful mindset." },
+  { icon: ScanSearch, title: "Critical Thinking", tag: "User-Centered", description: "I consider user needs and details before shaping a solution." },
+  { icon: Palette, title: "Design Thinking", tag: "Visual Hierarchy", description: "I use structure and visual hierarchy to keep interfaces clear." },
+  { icon: GitBranch, title: "Continuous Learning", tag: "Iterative Growth", description: "I grow through feedback, hands-on practice, and iteration." },
 ];
