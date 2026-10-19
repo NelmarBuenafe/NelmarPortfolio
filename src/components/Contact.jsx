@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ArrowUpRight, CircleCheck, Clock, Mail, MapPin, Send } from "lucide-react";
+import { ArrowUpRight, Check, CircleCheck, Clock, Copy, Mail, MapPin, Send } from "lucide-react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { useSearchParams } from "react-router-dom";
 import SectionHeader from "./SectionHeader";
@@ -46,6 +46,8 @@ function Contact() {
   }));
   const [errors, setErrors] = useState({});
   const [isOpeningEmail, setIsOpeningEmail] = useState(false);
+  const [copied, setCopied] = useState(false);
+  const [preparedDetails, setPreparedDetails] = useState("");
 
   function handleChange(event) {
     const { name, value } = event.target;
@@ -83,8 +85,19 @@ function Contact() {
     ].join("\n");
 
     setIsOpeningEmail(true);
-    window.location.href = `mailto:${contactEmail}?subject=${encodeURIComponent(`${selectedService} inquiry`)}&body=${encodeURIComponent(body)}`;
+    const subject = `${selectedService} inquiry`;
+    setPreparedDetails(`To: ${contactEmail}\nSubject: ${subject}\n\n${body}`);
+    window.location.href = `mailto:${contactEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   }
+  const handleCopyDetails = async () => {
+    try {
+      await navigator.clipboard.writeText(preparedDetails);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2500);
+    } catch {
+      // Ignore clipboard write failure
+    }
+  };
 
   return (
     <section>
@@ -188,6 +201,37 @@ function Contact() {
               <Send size={16} aria-hidden="true" />
               {isOpeningEmail ? "Opening Email..." : "Submit Inquiry"}
             </button>
+
+            {preparedDetails && (
+              <div className="mt-4 rounded-xl border border-teal-200 bg-teal-50/70 p-4 text-sm text-stone-800">
+                <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+                  <div className="space-y-1">
+                    <p className="font-semibold text-teal-900">Email client triggered!</p>
+                    <p className="text-xs text-stone-600">
+                      If your email app didn&apos;t open automatically, copy your inquiry below to send directly to{" "}
+                      <span className="font-medium text-stone-900">{contactEmail}</span>.
+                    </p>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={handleCopyDetails}
+                    className="inline-flex shrink-0 items-center justify-center gap-1.5 rounded-lg border border-teal-300 bg-white px-3.5 py-1.5 text-xs font-semibold text-teal-800 shadow-sm transition hover:bg-teal-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500"
+                  >
+                    {copied ? (
+                      <>
+                        <Check size={14} className="text-teal-700" />
+                        Copied!
+                      </>
+                    ) : (
+                      <>
+                        <Copy size={14} />
+                        Copy Inquiry
+                      </>
+                    )}
+                  </button>
+                </div>
+              </div>
+            )}
           </form>
           </Reveal>
         </Reveal>
