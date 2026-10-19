@@ -74,20 +74,23 @@ function Contact() {
     }
 
     const selectedService = serviceOptions.find((service) => service.value === form.service)?.name ?? "Other";
-    const body = [
-      `Name: ${form.name}`,
-      `Email: ${form.email}`,
-      `Selected service: ${selectedService}`,
-      `Preferred deadline: ${form.deadline || "Not specified"}`,
-      "",
-      "Project description:",
-      form.description,
-    ].join("\n");
+    const deadlineValue = form.deadline.trim() || "Not specified";
+
+    const formattedBody =
+      `Name: ${encodeURIComponent(form.name)}` +
+      `%0D%0AEmail: ${encodeURIComponent(form.email)}` +
+      `%0D%0ASelected service: ${encodeURIComponent(selectedService)}` +
+      `%0D%0APreferred deadline: ${encodeURIComponent(deadlineValue)}` +
+      `%0D%0A%0D%0AProject description:%0D%0A${encodeURIComponent(form.description)}`;
+
+    const subject = `${selectedService} inquiry`;
+    const mailtoLink = `mailto:${contactEmail}?subject=${encodeURIComponent(subject)}&body=${formattedBody}`;
 
     setIsOpeningEmail(true);
-    const subject = `${selectedService} inquiry`;
-    setPreparedDetails(`To: ${contactEmail}\nSubject: ${subject}\n\n${body}`);
-    window.location.href = `mailto:${contactEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    setPreparedDetails(
+      `To: ${contactEmail}\nSubject: ${subject}\n\nName: ${form.name}\nEmail: ${form.email}\nSelected service: ${selectedService}\nPreferred deadline: ${deadlineValue}\n\nProject description:\n${form.description}`
+    );
+    window.location.href = mailtoLink;
   }
   const handleCopyDetails = async () => {
     try {
