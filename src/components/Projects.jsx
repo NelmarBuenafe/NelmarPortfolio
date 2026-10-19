@@ -16,10 +16,18 @@ const projects = [
     title: "BreedSmart",
     category: "Web & Mobile",
     projectType: "Capstone Project",
-    shortDescription: "A livestock management app for organizing breeding records and farmer workflows.",
+    shortDescription:
+      "A livestock and breeding management platform designed to help local raisers organize breeding records, monitor reproductive cycles, and streamline farm workflows.",
+    overview: [
+      "BreedSmart is a capstone platform created to modernize agricultural bookkeeping and livestock management for local raisers and municipal agricultural technicians.",
+      "The platform eliminates fragmented paper-based tracking by providing a centralized database for animal pedigrees, insemination schedules, and reproductive milestones.",
+      "Engineered with a responsive architecture combining a web management portal for comprehensive administration and mobile-friendly usability for direct farm use.",
+    ],
     features: [
-      { title: "Breeding Records", description: "Organizes breeding records." },
-      { title: "Farmer Workflows", description: "Supports farmer workflows." },
+      { title: "Breeding & Lineage Tracking", description: "Records sire/dam lineages, service dates, and gestation milestones." },
+      { title: "Health & Vaccination Records", description: "Maintains vaccination history and health treatments for each animal." },
+      { title: "Farmer & Admin Portals", description: "Dedicated views for agricultural oversight and daily farm workflows." },
+      { title: "Reproductive Milestones", description: "Automates calculations for expected heat cycles and farrowing/calving dates." },
     ],
     technologies: ["React", "React Native", "Expo", "JavaScript", "TypeScript", "Node.js", "Express", "MongoDB"],
     cardTechnologies: ["React", "Node.js", "MongoDB"],
@@ -133,20 +141,28 @@ function Projects() {
       <div className="mb-6 overflow-x-auto pb-1" role="group" aria-label="Filter projects by category">
         <div className="flex min-w-max gap-2">
           {categories.map((category) => {
+            const count = category === "All" ? projects.length : projects.filter((p) => p.category === category).length;
             const isActive = activeCategory === category;
             return (
               <button
                 key={category}
                 type="button"
                 onClick={() => setActiveCategory(category)}
-                className={`min-h-10 rounded-full border px-3.5 py-2 text-sm font-semibold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2 ${
+                className={`inline-flex items-center gap-2 min-h-10 rounded-full border px-3.5 py-2 text-sm font-semibold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2 ${
                   isActive
                     ? "border-teal-700 bg-teal-700 text-white shadow-sm"
                     : "border-stone-200 bg-white text-stone-600 hover:border-teal-300 hover:bg-teal-50 hover:text-teal-800"
                 }`}
                 aria-pressed={isActive}
               >
-                {category}
+                <span>{category}</span>
+                <span
+                  className={`rounded-full px-2 py-0.5 text-xs font-semibold ${
+                    isActive ? "bg-white/20 text-white" : "bg-stone-100 text-stone-600"
+                  }`}
+                >
+                  {count}
+                </span>
               </button>
             );
           })}
