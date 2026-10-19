@@ -35,7 +35,7 @@ function App() {
       <Sidebar onDesktopExpandedChange={handleSidebarChange} />
 
       <main className="portfolio-main min-h-screen">
-        <div className="mx-auto max-w-[1440px] px-5 pb-20 pt-24 sm:px-8 sm:pt-28 lg:px-12 lg:pt-14">
+        <div className="mx-auto max-w-[1440px] px-4 pb-16 pt-20 sm:px-8 sm:pb-20 sm:pt-28 lg:px-12 lg:pt-14">
           <div key={pathname} className="portfolio-route-enter">
             <Outlet />
           </div>

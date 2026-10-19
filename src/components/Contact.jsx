@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { ArrowUpRight, Check, CircleCheck, Clock, Copy, Mail, MapPin, Send } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { ArrowUpRight, Check, ChevronDown, CircleCheck, Clock, Copy, Mail, MapPin, Send } from "lucide-react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { useSearchParams } from "react-router-dom";
 import SectionHeader from "./SectionHeader";
@@ -165,21 +165,17 @@ function Contact() {
               <Field label="Email Address" name="email" type="email" value={form.email} error={errors.email} onChange={handleChange} />
             </div>
 
-            <label className="mt-3.5 sm:mt-4 block">
-              <span className="text-xs sm:text-sm font-semibold text-stone-700">Selected Service</span>
-              <select
-                name="service"
+            <div className="mt-3.5 sm:mt-4">
+              <span id="service-select-label" className="block text-xs sm:text-sm font-semibold text-stone-700">
+                Selected Service
+              </span>
+              <ServiceSelect
                 value={form.service}
                 onChange={handleChange}
-                className={`mt-1.5 sm:mt-2 min-h-11 sm:min-h-12 w-full rounded-xl border bg-stone-50 px-3.5 py-2.5 sm:px-4 sm:py-3 text-sm text-stone-800 outline-none transition focus:border-teal-500 focus:bg-white focus:ring-2 focus:ring-teal-500/20 ${errors.service ? "border-red-400" : "border-stone-200"}`}
-              >
-                <option value="">Select a service</option>
-                {serviceOptions.map((service) => (
-                  <option key={service.value} value={service.value}>{service.name}</option>
-                ))}
-              </select>
+                error={errors.service}
+              />
               <FieldError message={errors.service} />
-            </label>
+            </div>
 
             <label className="mt-3.5 sm:mt-4 block">
               <span className="text-xs sm:text-sm font-semibold text-stone-700">Project Description</span>
@@ -261,6 +257,125 @@ function Field({ label, name, type = "text", value, error, onChange }) {
 
 function FieldError({ message }) {
   return message ? <p className="mt-1 text-xs font-medium text-red-600">{message}</p> : null;
+}
+
+function ServiceSelect({ value, onChange, error }) {
+  const [isOpen, setIsOpen] = useState(false);
+  const containerRef = useRef(null);
+
+  const selectedService = serviceOptions.find((service) => service.value === value);
+
+  useEffect(() => {
+    if (!isOpen) return undefined;
+
+    function handlePointerDown(event) {
+      if (!containerRef.current?.contains(event.target)) {
+        setIsOpen(false);
+      }
+    }
+
+    function handleKeyDown(event) {
+      if (event.key === "Escape") {
+        setIsOpen(false);
+      }
+    }
+
+    document.addEventListener("pointerdown", handlePointerDown);
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.removeEventListener("pointerdown", handlePointerDown);
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isOpen]);
+
+  function handleSelect(serviceValue) {
+    onChange({ target: { name: "service", value: serviceValue } });
+    setIsOpen(false);
+  }
+
+  return (
+    <div ref={containerRef} className="relative mt-1.5 sm:mt-2">
+      <select
+        name="service"
+        value={value}
+        onChange={onChange}
+        className="sr-only"
+        tabIndex={-1}
+        aria-hidden="true"
+      >
+        <option value="">Select a service</option>
+        {serviceOptions.map((service) => (
+          <option key={service.value} value={service.value}>
+            {service.name}
+          </option>
+        ))}
+      </select>
+
+      <button
+        type="button"
+        onClick={() => setIsOpen((open) => !open)}
+        aria-haspopup="listbox"
+        aria-expanded={isOpen}
+        aria-labelledby="service-select-label"
+        className={`flex min-h-11 sm:min-h-12 w-full items-center justify-between rounded-xl border bg-stone-50 px-3.5 py-2.5 sm:px-4 sm:py-3 text-left text-sm transition outline-none focus:border-teal-500 focus:bg-white focus:ring-2 focus:ring-teal-500/20 ${
+          error ? "border-red-400" : "border-stone-200"
+        } ${selectedService ? "text-stone-800" : "text-stone-400"}`}
+      >
+        <span className="truncate">
+          {selectedService ? selectedService.name : "Select a service"}
+        </span>
+        <ChevronDown
+          size={18}
+          className={`shrink-0 text-stone-400 transition-transform duration-200 ${
+            isOpen ? "rotate-180 text-teal-600" : ""
+          }`}
+          aria-hidden="true"
+        />
+      </button>
+
+      {isOpen && (
+        <ul
+          role="listbox"
+          aria-labelledby="service-select-label"
+          className="absolute left-0 right-0 top-[calc(100%+4px)] z-30 max-h-60 overflow-y-auto rounded-xl border border-stone-200 bg-white p-1.5 shadow-xl shadow-stone-900/10 outline-none backdrop-blur-md"
+        >
+          <li
+            role="option"
+            aria-selected={value === ""}
+            onClick={() => handleSelect("")}
+            className={`flex cursor-pointer items-center justify-between rounded-lg px-3 py-2.5 text-xs sm:text-sm font-medium transition ${
+              value === ""
+                ? "bg-teal-50 font-semibold text-teal-800"
+                : "text-stone-500 hover:bg-stone-100 hover:text-stone-900"
+            }`}
+          >
+            <span>Select a service</span>
+            {value === "" && <Check size={16} className="text-teal-700" />}
+          </li>
+          {serviceOptions.map((service) => {
+            const isSelected = value === service.value;
+            return (
+              <li
+                key={service.value}
+                role="option"
+                aria-selected={isSelected}
+                onClick={() => handleSelect(service.value)}
+                className={`flex cursor-pointer items-center justify-between rounded-lg px-3 py-2.5 text-xs sm:text-sm font-medium transition ${
+                  isSelected
+                    ? "bg-teal-50 font-semibold text-teal-800"
+                    : "text-stone-700 hover:bg-stone-100 hover:text-stone-950"
+                }`}
+              >
+                <span>{service.name}</span>
+                {isSelected && <Check size={16} className="text-teal-700" />}
+              </li>
+            );
+          })}
+        </ul>
+      )}
+    </div>
+  );
 }
 
 function ContactCard({ icon: Icon, label, value, href }) {

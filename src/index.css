@@ -80,6 +80,13 @@ input,
 textarea,
 select {
   transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease;
+  color-scheme: light dark;
+}
+
+select option {
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  padding: 8px 12px;
 }
 
 main {
