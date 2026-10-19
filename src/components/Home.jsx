@@ -4,6 +4,7 @@ import {
   Check,
   Code2,
   ExternalLink,
+  FileText,
   Lightbulb,
   MousePointer2,
 } from "lucide-react";
@@ -140,6 +141,14 @@ function Home() {
                   View My Work
                   <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
                 </Link>
+                <a
+                  href="/resume.pdf"
+                  download="Nelmar_Buenafe_Resume.pdf"
+                  className="inline-flex min-h-12 items-center gap-2 rounded-xl border border-stone-200 bg-white px-5 py-3 text-sm font-semibold text-stone-800 shadow-sm transition hover:border-teal-300 hover:bg-stone-50 hover:text-teal-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-600 focus-visible:ring-offset-2"
+                >
+                  <FileText size={17} aria-hidden="true" />
+                  Resume / CV
+                </a>
                 <Link
                   to="/contact"
                   className="inline-flex min-h-12 items-center px-2 text-sm font-semibold text-teal-700 underline decoration-teal-300 decoration-2 underline-offset-4 transition hover:text-teal-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-600 focus-visible:ring-offset-2"
