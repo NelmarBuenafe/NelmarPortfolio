@@ -110,36 +110,36 @@ function Contact() {
         description="Interested in working together? Select a service and tell me about your project. I’ll respond as soon as possible."
       />
 
-      <div className="grid items-start gap-8 lg:grid-cols-[0.8fr_1.2fr]">
+      <div className="grid items-start gap-6 sm:gap-8 lg:grid-cols-[0.85fr_1.15fr]">
         <Reveal className="self-start" direction="left">
-        <div className="h-auto self-start rounded-3xl bg-[#10201f] p-8 text-white shadow-xl shadow-teal-950/10 sm:p-10">
+        <div className="h-auto self-start rounded-2xl sm:rounded-3xl bg-[#10201f] p-5 sm:p-8 lg:p-10 text-white shadow-xl shadow-teal-950/10">
           <div className="inline-flex items-center gap-2 rounded-full border border-teal-400/30 bg-teal-400/10 px-3 py-1.5 text-xs font-semibold text-teal-300">
             <CircleCheck size={14} aria-hidden="true" />
             Open to internships and projects
           </div>
 
-          <p className="mt-7 text-sm font-medium uppercase tracking-[0.2em] text-stone-400">
+          <p className="mt-5 sm:mt-7 text-xs sm:text-sm font-medium uppercase tracking-[0.2em] text-stone-400">
             Let&apos;s make something useful
           </p>
-          <h2 className="mt-4 text-3xl font-bold">Start a conversation.</h2>
-          <p className="mt-5 leading-7 text-stone-300">
+          <h2 className="mt-3 sm:mt-4 text-2xl sm:text-3xl font-bold">Start a conversation.</h2>
+          <p className="mt-3.5 sm:mt-5 text-sm sm:text-base leading-6 sm:leading-7 text-stone-300">
             I am looking to learn, contribute, and grow through practical UI/UX and technology projects.
           </p>
 
-          <div className="mt-8 space-y-4 border-t border-white/10 pt-6 text-sm text-stone-300">
-            <div className="flex items-center gap-3">
-              <Clock size={17} className="text-teal-300" aria-hidden="true" />
-              Usually reply within 24 hours
+          <div className="mt-6 sm:mt-8 space-y-3.5 sm:space-y-4 border-t border-white/10 pt-5 sm:pt-6 text-xs sm:text-sm text-stone-300">
+            <div className="flex items-center gap-2.5 sm:gap-3">
+              <Clock size={16} className="shrink-0 text-teal-300" aria-hidden="true" />
+              <span>Usually reply within 24 hours</span>
             </div>
-            <div className="flex items-center gap-3">
-              <MapPin size={17} className="text-teal-300" aria-hidden="true" />
-              Based in Iloilo, Philippines · Open to remote
+            <div className="flex items-center gap-2.5 sm:gap-3">
+              <MapPin size={16} className="shrink-0 text-teal-300" aria-hidden="true" />
+              <span>Based in Iloilo, Philippines · Open to remote</span>
             </div>
           </div>
 
           <a
             href={`mailto:${contactEmail}`}
-            className="mt-8 inline-flex items-center gap-2 rounded-xl bg-white px-5 py-3 text-sm font-semibold text-stone-900 transition hover:bg-stone-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#10201f]"
+            className="mt-6 sm:mt-8 inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-xl bg-white px-5 py-3 text-sm font-semibold text-stone-900 transition hover:bg-stone-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#10201f]"
           >
             Send me an email <ArrowUpRight size={16} />
           </a>
@@ -154,24 +154,24 @@ function Contact() {
           ))}
 
           <Reveal delay={180}>
-          <form onSubmit={handleSubmit} noValidate className="rounded-2xl border border-stone-200 bg-white p-6 shadow-sm sm:p-7">
-            <h2 className="text-lg font-bold text-stone-950">Tell me about your project</h2>
-            <p className="mt-1 text-sm text-stone-500">
+          <form onSubmit={handleSubmit} noValidate className="rounded-2xl border border-stone-200 bg-white p-4 sm:p-6 lg:p-7 shadow-sm">
+            <h2 className="text-base sm:text-lg font-bold text-stone-950">Tell me about your project</h2>
+            <p className="mt-1 text-xs sm:text-sm text-stone-500">
               This form opens your email app with the inquiry details. No backend is configured on this portfolio yet.
             </p>
 
-            <div className="mt-5 grid gap-4 sm:grid-cols-2">
+            <div className="mt-4 sm:mt-5 grid gap-3.5 sm:gap-4 sm:grid-cols-2">
               <Field label="Name" name="name" value={form.name} error={errors.name} onChange={handleChange} />
               <Field label="Email Address" name="email" type="email" value={form.email} error={errors.email} onChange={handleChange} />
             </div>
 
-            <label className="mt-4 block">
-              <span className="text-sm font-semibold text-stone-700">Selected Service</span>
+            <label className="mt-3.5 sm:mt-4 block">
+              <span className="text-xs sm:text-sm font-semibold text-stone-700">Selected Service</span>
               <select
                 name="service"
                 value={form.service}
                 onChange={handleChange}
-                className={`mt-2 min-h-12 w-full rounded-xl border bg-stone-50 px-4 py-3 text-sm text-stone-800 outline-none transition focus:border-teal-500 focus:bg-white focus:ring-2 focus:ring-teal-500/20 ${errors.service ? "border-red-400" : "border-stone-200"}`}
+                className={`mt-1.5 sm:mt-2 min-h-11 sm:min-h-12 w-full rounded-xl border bg-stone-50 px-3.5 py-2.5 sm:px-4 sm:py-3 text-sm text-stone-800 outline-none transition focus:border-teal-500 focus:bg-white focus:ring-2 focus:ring-teal-500/20 ${errors.service ? "border-red-400" : "border-stone-200"}`}
               >
                 <option value="">Select a service</option>
                 {serviceOptions.map((service) => (
@@ -181,15 +181,15 @@ function Contact() {
               <FieldError message={errors.service} />
             </label>
 
-            <label className="mt-4 block">
-              <span className="text-sm font-semibold text-stone-700">Project Description</span>
+            <label className="mt-3.5 sm:mt-4 block">
+              <span className="text-xs sm:text-sm font-semibold text-stone-700">Project Description</span>
               <textarea
                 name="description"
                 value={form.description}
                 onChange={handleChange}
                 rows="5"
                 placeholder="Tell me about your project or opportunity..."
-                className={`mt-2 w-full resize-y rounded-xl border bg-stone-50 px-4 py-3 text-sm text-stone-800 outline-none transition placeholder:text-stone-400 focus:border-teal-500 focus:bg-white focus:ring-2 focus:ring-teal-500/20 ${errors.description ? "border-red-400" : "border-stone-200"}`}
+                className={`mt-1.5 sm:mt-2 w-full resize-y rounded-xl border bg-stone-50 px-3.5 py-2.5 sm:px-4 sm:py-3 text-sm text-stone-800 outline-none transition placeholder:text-stone-400 focus:border-teal-500 focus:bg-white focus:ring-2 focus:ring-teal-500/20 ${errors.description ? "border-red-400" : "border-stone-200"}`}
               />
               <FieldError message={errors.description} />
             </label>
@@ -199,15 +199,15 @@ function Contact() {
             <button
               type="submit"
               disabled={isOpeningEmail}
-              className="mt-5 inline-flex min-h-12 items-center gap-2 rounded-xl bg-stone-900 px-5 py-3 text-sm font-semibold text-white transition hover:bg-teal-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-600 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60"
+              className="mt-5 inline-flex min-h-11 sm:min-h-12 w-full sm:w-auto items-center justify-center gap-2 rounded-xl bg-stone-900 px-6 py-3 text-sm font-semibold text-white transition hover:bg-teal-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-600 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60"
             >
               <Send size={16} aria-hidden="true" />
               {isOpeningEmail ? "Opening Email..." : "Submit Inquiry"}
             </button>
 
             {preparedDetails && (
-              <div className="mt-4 rounded-xl border border-teal-200 bg-teal-50/70 p-4 text-sm text-stone-800">
-                <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+              <div className="mt-4 rounded-xl border border-teal-200 bg-teal-50/70 p-3.5 sm:p-4 text-xs sm:text-sm text-stone-800">
+                <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                   <div className="space-y-1">
                     <p className="font-semibold text-teal-900">Email client triggered!</p>
                     <p className="text-xs text-stone-600">
@@ -218,7 +218,7 @@ function Contact() {
                   <button
                     type="button"
                     onClick={handleCopyDetails}
-                    className="inline-flex shrink-0 items-center justify-center gap-1.5 rounded-lg border border-teal-300 bg-white px-3.5 py-1.5 text-xs font-semibold text-teal-800 shadow-sm transition hover:bg-teal-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500"
+                    className="inline-flex w-full sm:w-auto shrink-0 items-center justify-center gap-1.5 rounded-lg border border-teal-300 bg-white px-3.5 py-2 sm:py-1.5 text-xs font-semibold text-teal-800 shadow-sm transition hover:bg-teal-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500"
                   >
                     {copied ? (
                       <>
@@ -246,13 +246,13 @@ function Contact() {
 function Field({ label, name, type = "text", value, error, onChange }) {
   return (
     <label className="block">
-      <span className="text-sm font-semibold text-stone-700">{label}</span>
+      <span className="text-xs sm:text-sm font-semibold text-stone-700">{label}</span>
       <input
         name={name}
         type={type}
         value={value}
         onChange={onChange}
-        className={`mt-2 min-h-12 w-full rounded-xl border bg-stone-50 px-4 py-3 text-sm text-stone-800 outline-none transition placeholder:text-stone-400 focus:border-teal-500 focus:bg-white focus:ring-2 focus:ring-teal-500/20 ${error ? "border-red-400" : "border-stone-200"}`}
+        className={`mt-1.5 sm:mt-2 min-h-11 sm:min-h-12 w-full rounded-xl border bg-stone-50 px-3.5 py-2.5 sm:px-4 sm:py-3 text-sm text-stone-800 outline-none transition placeholder:text-stone-400 focus:border-teal-500 focus:bg-white focus:ring-2 focus:ring-teal-500/20 ${error ? "border-red-400" : "border-stone-200"}`}
       />
       <FieldError message={error} />
     </label>
@@ -269,14 +269,14 @@ function ContactCard({ icon: Icon, label, value, href }) {
       href={href}
       target={href.startsWith("mailto:") ? undefined : "_blank"}
       rel={href.startsWith("mailto:") ? undefined : "noopener noreferrer"}
-      className="group flex items-center gap-4 rounded-xl border border-stone-200 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-600 focus-visible:ring-offset-2"
+      className="group flex items-center gap-3 sm:gap-4 rounded-xl border border-stone-200 bg-white p-3.5 sm:p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-600 focus-visible:ring-offset-2"
     >
-      <div className="contact-method-icon inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border transition">
-        <Icon size={20} aria-hidden="true" />
+      <div className="contact-method-icon inline-flex h-10 w-10 sm:h-11 sm:w-11 shrink-0 items-center justify-center rounded-xl border transition">
+        <Icon size={18} aria-hidden="true" />
       </div>
       <div className="min-w-0">
-        <p className="text-xs font-semibold uppercase tracking-wider text-stone-400">{label}</p>
-        <p className="mt-1 truncate text-sm font-medium text-stone-700">{value}</p>
+        <p className="text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-stone-400">{label}</p>
+        <p className="mt-0.5 sm:mt-1 truncate text-xs sm:text-sm font-medium text-stone-700">{value}</p>
       </div>
     </a>
   );
