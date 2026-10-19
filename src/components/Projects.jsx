@@ -6,9 +6,8 @@ import SectionHeader from "./SectionHeader";
 import BreedSmartImage from "../assets/BreedSmart.png";
 import ParkourGameImage from "../assets/ParkourGame.png";
 import TicTacToeImage from "../assets/TicTakToe.png";
+import PhinmaHubImage from "../assets/phinmahub-landing-page.png";
 import Reveal from "./Reveal";
-
-const phinmaHubImage = "/phinmahub-landing-page.png";
 
 const projects = [
   {
@@ -102,7 +101,7 @@ const projects = [
     ],
     technologies: ["React", "Vite", "Tailwind CSS", "JavaScript", "Node.js", "Express", "Supabase"],
     cardTechnologies: ["React", "Node.js", "Supabase"],
-    image: phinmaHubImage,
+    image: PhinmaHubImage,
     imageAlt: "PhinmaHub learning management system landing page",
     liveUrl: "",
     githubUrl: "https://github.com/NelmarBuenafe/PhinmaHub",
@@ -202,7 +201,7 @@ function ProjectCard({ project, index, onViewProject }) {
           <button
             type="button"
             onClick={(event) => onViewProject(project, event.currentTarget)}
-            className="block aspect-video w-full shrink-0 overflow-hidden border-b border-stone-200 bg-stone-100 p-2.5 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-teal-600 lg:h-[220px] lg:w-[390px] lg:self-center lg:border-b-0 lg:border-r"
+            className="group/thumb relative flex aspect-video w-full shrink-0 items-center justify-center overflow-hidden border-b border-stone-200 bg-stone-100 p-2.5 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-teal-600 sm:aspect-[16/10] lg:h-[220px] lg:w-[390px] lg:self-center lg:border-b-0 lg:border-r cursor-pointer"
             aria-label={`View ${project.title} project details`}
           >
             <ProjectMedia project={project} index={index} />
@@ -373,9 +372,9 @@ function ProjectMedia({ project, index }) {
       <img
         src={project.image}
         alt={project.imageAlt}
-        loading={index === 0 ? "eager" : "lazy"}
-        className={`h-full w-full rounded-xl transition duration-500 group-hover:scale-[1.02] ${
-          project.imageFit === "cover" ? "object-cover" : "object-contain"
+        loading={index < 2 ? "eager" : "lazy"}
+        className={`max-h-full max-w-full rounded-xl transition duration-500 group-hover:scale-[1.02] ${
+          project.imageFit === "cover" ? "h-full w-full object-cover" : "h-auto w-auto object-contain"
         }`}
       />
     );
