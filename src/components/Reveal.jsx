@@ -9,18 +9,39 @@ function Reveal({ children, className = "", delay = 0, direction = "up" }) {
     const node = ref.current;
     if (!node) return undefined;
 
+    let frameId;
+
+    if (typeof IntersectionObserver === "undefined") {
+      frameId = requestAnimationFrame(() => setVisible(true));
+      return () => cancelAnimationFrame(frameId);
+    }
+
+    const rect = node.getBoundingClientRect();
+    if (rect.top < window.innerHeight && rect.bottom > 0) {
+      frameId = requestAnimationFrame(() => setVisible(true));
+      return () => cancelAnimationFrame(frameId);
+    }
+
+    let timer = setTimeout(() => {
+      setVisible(true);
+    }, 450);
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           setVisible(true);
+          clearTimeout(timer);
           observer.disconnect();
         }
       },
-      { rootMargin: "0px 0px -10%", threshold: 0.06 },
+      { rootMargin: "50px 0px", threshold: 0.01 },
     );
 
     observer.observe(node);
-    return () => observer.disconnect();
+    return () => {
+      clearTimeout(timer);
+      observer.disconnect();
+    };
   }, []);
 
   return (

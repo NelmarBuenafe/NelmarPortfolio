@@ -11,6 +11,7 @@ import {
 import { Link } from "react-router-dom";
 import BreedSmartImage from "../assets/BreedSmart.png";
 import ProfileImage from "../assets/hero-portrait.png";
+import formalFallback from "../assets/formal.jpg";
 import Reveal from "./Reveal";
 
 const services = [
@@ -177,6 +178,10 @@ function Home() {
                 src={ProfileImage}
                 alt="Nelmar Buenafe in a formal black suit"
                 className="portfolio-hero-portrait"
+                loading="eager"
+                onError={(e) => {
+                  e.currentTarget.src = formalFallback;
+                }}
               />
             </div>
           </Reveal>
@@ -198,6 +203,7 @@ function Home() {
                 src={BreedSmartImage}
                 alt="BreedSmart livestock and breeding management system preview"
                 className="aspect-[16/10] w-full rounded-xl object-contain transition duration-500 group-hover:scale-[1.02]"
+                loading="eager"
               />
             </div>
           </Reveal>
